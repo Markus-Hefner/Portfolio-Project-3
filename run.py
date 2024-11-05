@@ -86,11 +86,11 @@ def add_new_worksheet(data):
     """
     Adds a new worksheet with the name of the piece to the spreadsheet for later use
     """
-    SHEET.add_worksheet(title = data[1], rows="100", cols="20")
+    print(data)
+    new_worksheet = SHEET.add_worksheet(title = data[1], rows="1", cols="10")
+    new_worksheet.append_row(data)
     
     #   print(f"Successfully created a new worksheet for {data[1]}")
-
-
 
 add_new_piece()
 
