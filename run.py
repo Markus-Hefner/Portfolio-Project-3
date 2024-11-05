@@ -20,6 +20,37 @@ index = SHEET.worksheet('Index')
 
 data = index.get_all_values()
 
+def add_new_piece():
+    """
+    Adds a new piece to spreadsheet
+    """
+    while True:
+        print("Please enter the title of the new piece you wish to add.\n Confirm with 'Enter'.")
+
+        title = input("Title:\n")
+
+        print("Please enter the composer of the new piece you wish to add. (Optional)\n Confirm with 'Enter'.")
+
+        composer = input("Composer:\n")
+
+        print("Please enter the arranger of the new piece you wish to add. (Optional)\n Confirm with 'Enter'.")
+
+        arranger = input("Arranger:\n")
+
+        print("Please enter additional information of the new piece you wish to add. (Optional)\n Confirm with 'Enter'.")
+
+        additional_info = input("Additional information:\n")
+
+        break
+
+
+
+
+    new_piece = [title, composer, arranger, additional_info]
+    index.append_row(new_piece)
+
+add_new_piece()
+
 def add_new_worksheet(name):
     """
     Adds a new worksheet to the spreadsheet
@@ -28,5 +59,5 @@ def add_new_worksheet(name):
 
 
 
-print(add_new_worksheet('All My Loving').get_all_values())
+
 
