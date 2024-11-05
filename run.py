@@ -92,6 +92,32 @@ def add_new_worksheet(data):
     
     #   print(f"Successfully created a new worksheet for {data[1]}")
 
+def practice_adding_or_index():
+    """
+    The user decides whether to practice, add a new piece or show index
+    """
+    print("What would you like to do?")
+    print("Type 'p' and press 'Enter' if you want to start practicing")
+    print("Type 'a' and press 'Enter' if you want to add a new piece")
+    print("Type 'i' and press 'Enter' if you want to see the index")
+
+    user_decision = input()
+
+    if user_decision.lower() == "p":
+        start_practicing()
+    elif user_decision.lower() == "a":
+        add_new_piece()
+    elif user_decision.lower() == "i":
+        show_index()
+    else:
+        print("Please enter correct value")
+        
+
+
+practice_adding_or_index()
+
+
+
 add_new_piece()
 
 
