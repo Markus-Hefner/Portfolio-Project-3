@@ -20,5 +20,13 @@ index = SHEET.worksheet('Index')
 
 data = index.get_all_values()
 
-print(data)
+def add_new_worksheet(name):
+    """
+    Adds a new worksheet to the spreadsheet
+    """
+    SHEET.add_worksheet(title=name, rows="100", cols="20")
+
+
+
+print(add_new_worksheet('All My Loving').get_all_values())
 
