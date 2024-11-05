@@ -24,6 +24,10 @@ def add_new_piece():
     """
     Adds a new piece to spreadsheet
     """
+    new_piece = []
+    index_number = get_index_number() + 1
+    new_piece.append(index_number)
+
     while True:
         print("Please enter the title of the new piece you wish to add.\n Confirm with 'Enter'.")
 
@@ -42,20 +46,53 @@ def add_new_piece():
         additional_info = input("Additional information:\n")
 
         break
+    #   print("Please confirm the following details are correct:\n")
+    #   print(f"Title: {title}\n")
+    #   print(f"Composer: {composer}\n")
+    #   print(f"Arranger: {arranger}\n")
+    #   print(f"Additional information: {additional_info}\n")
+
+    #   confirm = input("Please confirm the details are correct. (Y/N)\n")
+    #  if confirm.lower() == "y":
+    #      break
+    #  else:
+    #      print("Please re-enter the details.\n")
+    #      continue
+    #   break
+
+    new_piece.append(title)
+    new_piece.append(composer)
+    new_piece.append(arranger)
+    new_piece.append(additional_info)
+
+    add_piece_to_index(new_piece)
+    add_new_worksheet(new_piece)
+
+def get_index_number():
+    """
+    Gets the index number of the last piece in the index
+    """
+    print(index.col_values(1))
+    index_number = index.col_values(1)
+    return int(index_number[-1])
+
+def add_piece_to_index(data):
+    """
+    Adds a new piece to the index
+    """
+    index.append_row(data)
+
+def add_new_worksheet(data):
+    """
+    Adds a new worksheet with the name of the piece to the spreadsheet for later use
+    """
+    SHEET.add_worksheet(title = data[1], rows="100", cols="20")
+    
+    #   print(f"Successfully created a new worksheet for {data[1]}")
 
 
-
-
-    new_piece = [title, composer, arranger, additional_info]
-    index.append_row(new_piece)
 
 add_new_piece()
-
-def add_new_worksheet(name):
-    """
-    Adds a new worksheet to the spreadsheet
-    """
-    SHEET.add_worksheet(title=name, rows="100", cols="20")
 
 
 
