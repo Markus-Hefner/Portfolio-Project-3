@@ -92,9 +92,9 @@ def add_new_worksheet(data):
     
     #   print(f"Successfully created a new worksheet for {data[1]}")
 
-def practice_adding_or_index():
+def practice_adding_or_repertoire():
     """
-    The user decides whether to practice, add a new piece or show index
+    The user decides whether to practice, add a new piece or show repertoire
     """
     print("What would you like to do?")
     print("Type 'p' and press 'Enter' if you want to start practicing.")
