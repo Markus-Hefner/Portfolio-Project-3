@@ -28,42 +28,58 @@ def add_new_piece():
         print("Please enter the title of the new piece you wish to add.\nPress 'Enter' to confirm.")
         title = input("Title:\n")
 
-        # Check if the title already exists in the spreadsheet
-        if any(title.lower() in row[1].lower() for row in data):
-            print("This piece already exists in your repertoire. Please enter a new title.")
-            print("Would you like to enter this piece a second time?")
-            input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
-            continue
-        # Check if the title is empty
-        elif title == "":
-            print("Title cannot be empty. Please enter a title.")
-            continue
-        else:
-            break
+        # # Check if the title already exists in the spreadsheet
+        # if any(title.lower() in row[1].lower() for row in data):
+        #     print("This piece already exists in your repertoire.")
+        #     print("Would you like to add this piece a second time?")
+        #     second_time = yes_no_validation()
+        #     while True:
+        #         confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
+        #         if confirmation.lower() == "y":
+        #             break
+        #         elif confirmation.lower() == "n":
+        #             print("\nPlease re-enter the details.\n")
+        #             add_new_piece()
+        #         else:
+        #             print("\nInvalid input.\n")
+        #             input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
+        # # Check if the title is empty
+        # elif title == "":
+        #     print("Title cannot be empty.")
+        #     continue
+        # else:
+        #     break
 
-    print("\nPlease enter the composer of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
-    composer = input("Composer:\n")
-    print("\nPlease enter the arranger of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
-    arranger = input("Arranger:\n")
-    print("\nPlease enter additional information of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
-    additional_info = input("Additional information:\n")
+        print("\nPlease enter the composer of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
+        composer = input("Composer:\n")
+        print("\nPlease enter the arranger of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
+        arranger = input("Arranger:\n")
+        print("\nPlease enter additional information of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
+        additional_info = input("Additional information:\n")
 
-    print("\nPlease confirm the following details are correct:\n")
-    print(f"Title: {title}")
-    print(f"Composer: {composer}")
-    print(f"Arranger: {arranger}")
-    print(f"Additional information: {additional_info}\n")
+        print("\nPlease confirm the following details are correct:\n")
+        print(f"Title: {title}")
+        print(f"Composer: {composer}")
+        print(f"Arranger: {arranger}")
+        print(f"Additional information: {additional_info}\n")
 
-    while True:
-        confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
-        if confirmation.lower() == "y":
+        answer = yes_no_validation()
+        if answer == True:
             print("\nNew piece has been added to your repertoire\n")
             break
-        elif confirmation.lower() == "n":
-            print("\nPlease re-enter the details.\n")
-            add_new_piece()
         else:
-            print("\nInvalid input.\n")
+            print("\nPlease re-enter the details.\n")
+
+    # while True:
+    #     confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
+    #     if confirmation.lower() == "y":
+    #         print("\nNew piece has been added to your repertoire\n")
+    #         break
+    #     elif confirmation.lower() == "n":
+    #         print("\nPlease re-enter the details.\n")
+    #         add_new_piece()
+    #     else:
+    #         print("\nInvalid input.\n")
 
     new_piece = []
     index_number = get_index_number() + 1
@@ -78,6 +94,20 @@ def add_new_piece():
     add_new_worksheet(new_piece)
     
     # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
+
+def yes_no_validation():
+    """
+     Validates the user's answer to be yes or no
+     """
+    confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
+    if confirmation.lower() == "y":
+        return True
+    elif confirmation.lower() == "n":
+        return False
+    else:
+        print("\nInvalid input.\n")
+        yes_no_validation()
+        
 
 # def search_piece():
 #     """
