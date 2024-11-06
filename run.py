@@ -4,6 +4,7 @@
 
 import gspread
 from google.oauth2.service_account import Credentials
+import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -83,12 +84,14 @@ def add_new_piece():
 
     new_piece = []
     index_number = get_index_number() + 1
+    timestamp = get_current_date()
 
     new_piece.append(index_number)
     new_piece.append(title)
     new_piece.append(composer)
     new_piece.append(arranger)
     new_piece.append(additional_info)
+    new_piece.append(timestamp)
 
     add_piece_to_index(new_piece)
     add_new_worksheet(new_piece)
@@ -124,6 +127,12 @@ def get_index_number():
     print(index.col_values(1))
     index_number = index.col_values(1)
     return int(index_number[-1])
+
+def get_current_date():
+    """
+    Returns current date in the Format "YYYY-MM-DD"
+    """
+    return datetime.datetime.now().date()
 
 def add_piece_to_index(data):
     """
