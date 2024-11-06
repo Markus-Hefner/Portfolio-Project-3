@@ -135,6 +135,25 @@ def get_current_date():
     """
     return datetime.datetime.now().date()
 
+def convert_date_to_string(date):
+    """
+    Converts a date in the format "YYYY-MM-DD" to a string of the same format"
+    """
+    return date.strftime('%Y-%m-%d')
+
+def convert_string_to_date(str_date):
+    """
+    Converts a date in a string datatype in the format "YYYY-MM-DD" to a date of the same format"
+    """
+    return datetime.datetime.strptime(str_date, '%Y-%m-%d').date()
+
+now = get_current_date()
+print(now)
+now_as_str = convert_date_to_string(now)
+print(now_as_str)
+now_as_date_again = convert_string_to_date("2014-05-08")
+print(now_as_date_again)
+
 def add_piece_to_index(data):
     """
     Adds a new piece to the index
@@ -188,7 +207,7 @@ def show_repertoire():
         
 
 
-practice_adding_or_repertoire()
+# practice_adding_or_repertoire()
 
 # date = '07-11-2024'
 # print(datetime.datetime.strptime(date, '%d-%m-%Y'))
