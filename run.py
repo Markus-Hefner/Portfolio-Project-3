@@ -97,28 +97,41 @@ def practice_adding_or_index():
     The user decides whether to practice, add a new piece or show index
     """
     print("What would you like to do?")
-    print("Type 'p' and press 'Enter' if you want to start practicing")
-    print("Type 'a' and press 'Enter' if you want to add a new piece")
-    print("Type 'i' and press 'Enter' if you want to see the index")
+    print("Type 'p' and press 'Enter' if you want to start practicing.")
+    print("Type 'a' and press 'Enter' if you want to add a new piece.")
+    print("Type 'r' and press 'Enter' if you want to see your repertoire.\n")
 
     user_decision = input()
 
     if user_decision.lower() == "p":
+        print('\nLet\'s pracitce!\n')
         start_practicing()
     elif user_decision.lower() == "a":
+        print('\nLet\'s add a new piece\n')
         add_new_piece()
-    elif user_decision.lower() == "i":
-        show_index()
+    elif user_decision.lower() == "r":
+        print('\nLet\'s check out your repertoire\n')
+        show_repertoire()
     else:
-        print("Please enter correct value")
+        print('\nPlease enter correct value.\n')
+        practice_adding_or_index()
+
+def show_repertoire():
+    """
+    Shows repetoire of pieces
+    """
+    print("Your repetoire:\n")
+    for i in data:
+        print(f'Index: {i[0]}\nTitle: {i[1]}\nComposer: {i[2]}\nArranger: {i[3]}\nAdditional Info: {i[4]}\n')
+    
+    # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
+        
         
 
 
 practice_adding_or_index()
 
 
-
-add_new_piece()
 
 
 
