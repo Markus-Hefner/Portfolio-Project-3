@@ -84,7 +84,8 @@ def add_new_piece():
 
     new_piece = []
     index_number = get_index_number() + 1
-    timestamp = get_current_date()
+    now = get_current_date()
+    timestamp = now.strftime('%Y/%m/%d')
 
     new_piece.append(index_number)
     new_piece.append(title)
@@ -188,6 +189,9 @@ def show_repertoire():
 
 
 practice_adding_or_repertoire()
+
+# date = '07-11-2024'
+# print(datetime.datetime.strptime(date, '%d-%m-%Y'))
 
 
 
