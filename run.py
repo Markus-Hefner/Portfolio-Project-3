@@ -29,27 +29,21 @@ def add_new_piece():
         print("Please enter the title of the new piece you wish to add.\nPress 'Enter' to confirm.")
         title = input("Title:\n")
 
-        # # Check if the title already exists in the spreadsheet
-        # if any(title.lower() in row[1].lower() for row in data):
-        #     print("This piece already exists in your repertoire.")
-        #     print("Would you like to add this piece a second time?")
-        #     second_time = yes_no_validation()
-        #     while True:
-        #         confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
-        #         if confirmation.lower() == "y":
-        #             break
-        #         elif confirmation.lower() == "n":
-        #             print("\nPlease re-enter the details.\n")
-        #             add_new_piece()
-        #         else:
-        #             print("\nInvalid input.\n")
-        #             input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
-        # # Check if the title is empty
-        # elif title == "":
-        #     print("Title cannot be empty.")
-        #     continue
-        # else:
-        #     break
+        # Check if the title already exists in the spreadsheet
+        if any(title.lower() in row[1].lower() for row in data):
+            print("This piece already exists in your repertoire.")
+            print("Would you like to add this piece a second time?")
+            second_time = yes_no_validation()
+            if second_time == True:
+                continue
+            else:
+                continue
+        # Check if the title is empty
+        elif title == "":
+            print("Title cannot be empty.")
+            continue
+        else:
+            break
 
         print("\nPlease enter the composer of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
         composer = input("Composer:\n")
@@ -84,15 +78,14 @@ def add_new_piece():
 
     new_piece = []
     index_number = get_index_number() + 1
-    now = get_current_date()
-    timestamp = now.strftime('%Y/%m/%d')
+    created_date = get_current_date()
 
     new_piece.append(index_number)
     new_piece.append(title)
     new_piece.append(composer)
     new_piece.append(arranger)
     new_piece.append(additional_info)
-    new_piece.append(timestamp)
+    new_piece.append(convert_date_to_string(created_date))
 
     add_piece_to_index(new_piece)
     add_new_worksheet(new_piece)
@@ -147,9 +140,8 @@ def convert_string_to_date(str_date):
     """
     return datetime.datetime.strptime(str_date, '%Y-%m-%d').date()
 
-now = get_current_date()
-print(now)
-now_as_str = convert_date_to_string(now)
+
+now_as_str = convert_date_to_string(get_current_date())
 print(now_as_str)
 now_as_date_again = convert_string_to_date("2014-05-08")
 print(now_as_date_again)
@@ -207,10 +199,7 @@ def show_repertoire():
         
 
 
-# practice_adding_or_repertoire()
-
-# date = '07-11-2024'
-# print(datetime.datetime.strptime(date, '%d-%m-%Y'))
+practice_adding_or_repertoire()
 
 
 
