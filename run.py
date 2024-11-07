@@ -65,6 +65,7 @@ def add_new_piece():
         else:
             print("\nPlease re-enter the details.\n")
 
+
     # while True:
     #     confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
     #     if confirmation.lower() == "y":
@@ -98,14 +99,14 @@ def yes_no_validation():
     """
     Validates the user's answer to be yes or no
     """
-    confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
-    if confirmation.lower() == "y":
-        return True
-    elif confirmation.lower() == "n":
-        return False
-    else:
-        print("\nInvalid input.\n")
-        yes_no_validation()
+    while True:
+        confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
+        if confirmation.lower() == "y":
+            return True
+        elif confirmation.lower() == "n":
+            return False
+        else:
+            print("\nInvalid input.\n")
         
 
 # def search_piece():
@@ -120,8 +121,8 @@ def get_index_number():
     """
     Gets the index number of the last piece in the index
     """
-    print(index.col_values(2))
-    index_number = index.col_values(2)
+    print(index.col_values(1))
+    index_number = index.col_values(1)
     print(index_number)
     if len(index_number) == 1:
         return 0
