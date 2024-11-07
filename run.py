@@ -20,29 +20,8 @@ SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 index = SHEET.worksheet('Index')
 
 data = index.get_all_values()
-print(data)
+
 due_dates = [col[5] for col in data if col[5] != "Timestamp"]
-print(due_dates)
-
-def create_due_list(data):
-    """
-    Removes the list item with the headings in it (which is also a list).
-    Removes list items of which the timestamp is > today.
-    """
-    data.pop(0)
-    due_list = [col for col in data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
-    return due_list
-
-def sort_by_timestamp(data):
-    """
-    Sorts the from the google sheet retrieved list of lists by last practiced
-    """
-    # sorted_due_list = convert_string_to_date(data[5]) <= datetime.datetime.now().date()
-    # print(i)
-    # print(i[5])
-    # print(type(i[5]))
-    return sorted(data, key = lambda e: e[5])
-
 
 def add_new_piece():
     """
@@ -223,17 +202,67 @@ def show_repertoire():
         print(f'Index: {i[0]}\nTitle: {i[1]}\nComposer: {i[2]}\nArranger: {i[3]}\nAdditional Info: {i[4]}\n')
     
     # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
-        
-        
+
+def start_practicing():
+    """
+    Starts the practicing part
+    """
+    due_pieces = create_due_list(data)
+    print(due_pieces) # check print statement
+    sorted_due_pieces = sort_by_timestamp(due_pieces)
+    print(sorted_due_pieces) # check print statement
+    a, b, c, d, e, f = sorted_due_pieces[0] # this needs to be looped later (if the user is done practicing the piece the loop has to get to the next item)
+
+    current_piece = PracticePiece(a, b, c, d, e, f)
+    print(current_piece.due_date) # check print statement
+
+    print(f'The next piece to practice is {current_piece.title}.')
+    print('Would like to practice that now or move on to the next?')
+    answer = yes_no_validation()
+    if answer == True:
+        print('Great let\' go!')
+    else:
+        print('Alright, let\'s move on to the next piece.')
+
+def create_due_list(data):
+    """
+    Removes the list item with the headings in it (which is also a list).
+    Removes list items of which the timestamp is > today.
+    """
+    data.pop(0)
+    due_list = [col for col in data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
+    return due_list
+
+def sort_by_timestamp(data):
+    """
+    Sorts the from the google sheet retrieved list of lists by last practiced
+    """
+    # sorted_due_list = convert_string_to_date(data[5]) <= datetime.datetime.now().date()
+    # print(i)
+    # print(i[5])
+    # print(type(i[5]))
+    return sorted(data, key = lambda e: e[5])
+
+class PracticePiece:
+    """
+    Class of the pieces to be practiced
+    """
+    def __init__(self, index, title, composer, arranger, additional_info, due_date):
+        self.index = index
+        self.title = title
+        self.composer = composer
+        self.arranger = arranger
+        self.additional_info = additional_info
+        self.due_date = due_date
+    
 
 
-# practice_adding_or_repertoire()
+       
 
 
-due_list = create_due_list(data)
-print(due_list)
-sorted_due_list = sort_by_timestamp(due_list)
-print(sorted_due_list)
+practice_adding_or_repertoire()
+
+
 
 
 
