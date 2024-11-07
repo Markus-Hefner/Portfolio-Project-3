@@ -33,15 +33,15 @@ def create_due_list(data):
     due_list = [col for col in data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
     return due_list
 
-def sort_by_timestamp(i):
+def sort_by_timestamp(data):
     """
     Sorts the from the google sheet retrieved list of lists by last practiced
     """
     # sorted_due_list = convert_string_to_date(data[5]) <= datetime.datetime.now().date()
-    print(i)
-    print(i[5])
-    sorted_due_list = [row for row in i]
-    return sorted_due_list
+    # print(i)
+    # print(i[5])
+    # print(type(i[5]))
+    return sorted(data, key = lambda e: e[5])
 
 
 def add_new_piece():
@@ -232,7 +232,7 @@ def show_repertoire():
 
 due_list = create_due_list(data)
 print(due_list)
-sorted_due_list = due_list.sort(key = sort_by_timestamp)
+sorted_due_list = sort_by_timestamp(due_list)
 print(sorted_due_list)
 
 
