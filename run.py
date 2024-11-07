@@ -95,8 +95,8 @@ def add_new_piece():
 
 def yes_no_validation():
     """
-     Validates the user's answer to be yes or no
-     """
+    Validates the user's answer to be yes or no
+    """
     confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
     if confirmation.lower() == "y":
         return True
@@ -188,7 +188,7 @@ def practice_adding_or_repertoire():
         show_repertoire()
     else:
         print('\nPlease enter correct value.\n')
-        practice_adding_or_index()
+        practice_adding_or_repertoire()
 
 def show_repertoire():
     """
