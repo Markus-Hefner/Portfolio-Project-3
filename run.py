@@ -37,9 +37,11 @@ def sort_by_timestamp(i):
     """
     Sorts the from the google sheet retrieved list of lists by last practiced
     """
-    sorted_due_list = 
     # sorted_due_list = convert_string_to_date(data[5]) <= datetime.datetime.now().date()
-    return convert_string_to_date(data[5]) <= datetime.datetime.now().date()
+    print(i)
+    print(i[5])
+    sorted_due_list = [row for row in i]
+    return sorted_due_list
 
 
 def add_new_piece():
