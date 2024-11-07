@@ -61,7 +61,6 @@ def add_new_piece():
         answer = yes_no_validation()
         print(answer)
         if answer == True:
-            print("\nNew piece has been added to your repertoire\n")
             break
         else:
             print("\nPlease re-enter the details.\n")
@@ -90,6 +89,8 @@ def add_new_piece():
 
     add_piece_to_index(new_piece)
     add_new_worksheet(new_piece)
+
+    print("\nNew piece has been added to your repertoire\n")
     
     # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
 
