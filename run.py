@@ -30,7 +30,7 @@ def add_new_piece():
         title = input("Title:\n")
 
         # Check if the title already exists in the spreadsheet
-        existing_titles = [col[1].lower() for col in data]
+        existing_titles = [col[1].lower() for col in data if col[1].lower() != "title"]
 
         if title.lower() in existing_titles:
             print("\nThis piece already exists in your repertoire.")
@@ -58,6 +58,7 @@ def add_new_piece():
         print(f"Additional information: {additional_info}\n")
 
         answer = yes_no_validation()
+        print(answer)
         if answer == True:
             print("\nNew piece has been added to your repertoire\n")
             break
