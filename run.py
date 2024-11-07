@@ -18,6 +18,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 
 index = SHEET.worksheet('Index')
+print(index)
 
 data = index.get_all_values()
 
@@ -77,16 +78,15 @@ def add_new_piece():
     #         print("\nInvalid input.\n")
 
     new_piece = []
-    created_date = get_current_date()
     index_number = get_index_number() + 1
-
+    created_date = get_current_date()
     
-    new_piece.append(convert_date_to_string(created_date))
     new_piece.append(index_number)
     new_piece.append(title)
     new_piece.append(composer)
     new_piece.append(arranger)
     new_piece.append(additional_info)
+    new_piece.append(convert_date_to_string(created_date))
 
     add_piece_to_index(new_piece)
     add_new_worksheet(new_piece)
@@ -122,8 +122,8 @@ def get_index_number():
     print(index.col_values(2))
     index_number = index.col_values(2)
     print(index_number)
-    if type(index_number) != int:
-        return 1
+    if len(index_number) == 1:
+        return 0
     else:
         return int(index_number[-1])
 
