@@ -26,20 +26,20 @@ def add_new_piece():
     Adds a new piece to spreadsheet
     """
     while True:
-        print("Please enter the title of the new piece you wish to add.\nPress 'Enter' to confirm.")
+        print("Please enter the title of the new piece you wish to add.\nPress 'Enter' to confirm.\n(You can not use \"title\" or \"Title\".)")
         title = input("Title:\n")
 
         # Check if the title already exists in the spreadsheet
-        if any(title.lower() in row[1].lower() for row in data):
-            print(data)
-            print()
+        existing_titles = [col[1].lower() for col in data]
+
+        if title.lower() in existing_titles:
             print("\nThis piece already exists in your repertoire.")
             print("Please rename it or give the title additional information.")
             print(f'E.g.: "{title} (other Version)"\n')
             continue
         # Check if the title is empty
         elif title == "":
-            print("Title cannot be empty.")
+            print("Title cannot be empty.\n")
             continue
         else:
             pass
@@ -159,7 +159,6 @@ def add_new_worksheet(data):
     """
     Adds a new worksheet with the name of the piece to the spreadsheet for later use
     """
-    print(data)
     new_worksheet = SHEET.add_worksheet(title = data[1], rows="1", cols="10")
     new_worksheet.append_row(data)
     
