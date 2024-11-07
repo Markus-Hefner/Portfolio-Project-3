@@ -33,11 +33,11 @@ def create_due_list(data):
     due_list = [col for col in data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
     return due_list
 
-def sort_by_timestamp(data):
+def sort_by_timestamp(i):
     """
     Sorts the from the google sheet retrieved list of lists by last practiced
     """
-    
+    sorted_due_list = 
     # sorted_due_list = convert_string_to_date(data[5]) <= datetime.datetime.now().date()
     return convert_string_to_date(data[5]) <= datetime.datetime.now().date()
 
