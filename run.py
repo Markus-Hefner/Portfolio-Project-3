@@ -31,19 +31,18 @@ def add_new_piece():
 
         # Check if the title already exists in the spreadsheet
         if any(title.lower() in row[1].lower() for row in data):
-            print("This piece already exists in your repertoire.")
-            print("Would you like to add this piece a second time?")
-            second_time = yes_no_validation()
-            if second_time == True:
-                continue
-            else:
-                continue
+            print(data)
+            print()
+            print("\nThis piece already exists in your repertoire.")
+            print("Please rename it or give the title additional information.")
+            print(f'E.g.: "{title} (other Version)"\n')
+            continue
         # Check if the title is empty
         elif title == "":
             print("Title cannot be empty.")
             continue
         else:
-            break
+            pass
 
         print("\nPlease enter the composer of the new piece you wish to add. (Optional)\nPress 'Enter' to confirm.")
         composer = input("Composer:\n")
@@ -120,7 +119,11 @@ def get_index_number():
     """
     print(index.col_values(1))
     index_number = index.col_values(1)
-    return int(index_number[-1])
+    print(index_number)
+    if index_number == []:
+        return 1
+    else:
+        return int(index_number[-1])
 
 def get_current_date():
     """
