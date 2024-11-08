@@ -211,9 +211,9 @@ def start_practicing():
     print(due_pieces) # check print statement
     sorted_due_pieces = sort_by_timestamp(due_pieces)
     print(sorted_due_pieces) # check print statement
-    a, b, c, d, e, f = sorted_due_pieces[0] # this needs to be looped later (if the user is done practicing the piece the loop has to get to the next item)
+    a, b, c, d, e, f, g = sorted_due_pieces[0] # this needs to be looped later (if the user is done practicing the piece the loop has to get to the next item)
 
-    current_piece = PracticePiece(a, b, c, d, e, f)
+    current_piece = PracticePiece(a, b, c, d, e, f, g)
     print(current_piece.due_date) # check print statement
 
     print(f'The next piece to practice is {current_piece.title}.')
@@ -221,8 +221,53 @@ def start_practicing():
     answer = yes_no_validation()
     if answer == True:
         print('Great let\' go!')
+        print(f'Play {current_piece.title} and let us now how it went.\n')
+        print('How did it go?')
+        answer = three_options_validation()
+        if answer = 2:
+            print('Great!')
+            update_due_date(current_piece.due_date, current_piece.count, answer)
+            # call function to update the due date. (Variable with stored due date is needed and variable with the current days to be added to the due date)
+            # check if due date is in the future
+            # if yes print message that you can move on to the next piece and...
+            # ... update the due date in the spreadsheet
+            # if no ask user if they want to practice the piece again
+            # if yes start again at 'Great let's go!'. Here a loop is needed until either the due date for the piece is in the future or the user doesn't want to practice the piece anymore. So...
+            # if the user says no to practicing the piece again, update the spreadsheet and...
+            # ... ask if they want to move on to the next piece or go back to the main menu.
+            
+
+
     else:
         print('Alright, let\'s move on to the next piece.')
+
+def three_options_validation():
+    """
+    Validates the user input for the three options:
+    - good
+    - ok
+    - bad
+    """
+    print("Type 'w' and press 'Enter' if it went well. (at tempo, no errors)")
+    print("Type 'o' and press 'Enter' if it went okay. (not at tempo or only a few errors)")
+    print("Type 'b' and press 'Enter' if it went bad. (not at tempo and some errors)\n")
+    while True:
+        user_input = input()
+        if confirmation.lower() == "w":
+            return 2
+        elif confirmation.lower() == "o":
+            return 1
+        elif confirmation.lower() == "b":
+            return o
+        else:
+            print("\nInvalid input.\n")
+
+def update_due_date(current_piece.due_date, current_piece.count, answer):
+    """
+    Updates due date using the count value and a factor depending on the answer variable
+    """
+    
+
 
 def create_due_list(data):
     """
@@ -247,13 +292,14 @@ class PracticePiece:
     """
     Class of the pieces to be practiced
     """
-    def __init__(self, index, title, composer, arranger, additional_info, due_date):
+    def __init__(self, index, title, composer, arranger, additional_info, due_date, count):
         self.index = index
         self.title = title
         self.composer = composer
         self.arranger = arranger
         self.additional_info = additional_info
         self.due_date = due_date
+        self.count = count
     
 
 
