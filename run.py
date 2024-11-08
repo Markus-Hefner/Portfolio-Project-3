@@ -209,19 +209,31 @@ def pick_a_piece():
     sorted_due_pieces = sort_by_timestamp(due_pieces)
     print(sorted_due_pieces) # check print statement
     # Here a loop has to start to iterate through the pieces. Before there should be the question if the user wants to proceed or go back to the main menu.
-    a, b, c, d, e, f, g = sorted_due_pieces[0] # this needs to be looped later (if the user is done practicing the piece the loop has to get to the next item)
+    sorted_due_pieces_len = len(sorted_due_pieces)
+    print(sorted_due_pieces_len) # check print statement
+    while i < sorted_due_pieces_len:
+        
 
-    current_piece = PracticePiece(a, b, c, d, e, f, g)
-    print(current_piece.due_date) # check print statement
 
-    print(f'The next piece to practice is {current_piece.title}.')
-    print('Would like to practice that now? If not, we will move on to the next piece.')
-    answer = yes_no_validation()
-    if answer == True:
-        practice_piece(current_piece)
+    # for i in sorted_due_pieces:
+        a, b, c, d, e, f, g = sorted_due_pieces[i] # this needs to be looped later (if the user is done practicing the piece the loop has to get to the next item)
+        i += 1
+        current_piece = PracticePiece(a, b, c, d, e, f, g)
+        print(current_piece.due_date) # check print statement
+
+        print(f'The next piece to practice is {current_piece.title}.')
+        print('Would like to practice that now? If not, we will move on to the next piece.')
+        answer = yes_no_validation()
+        if answer == True:
+            practice_piece(current_piece)
+        
+        else:
+            print('Alright, let\'s move on to the next piece.')
     
-    else:
-        print('Alright, let\'s move on to the next piece.')
+    print('Congratulations, you got through all the material today')
+    print('Hope to see you tomorrow again :-)')
+    
+    # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
 
 def practice_piece(current_piece):
     """
@@ -355,7 +367,11 @@ class PracticePiece:
         self.due_date = due_date
         self.count = count
     
-
+def update_index(current_piece, due_date, count):
+    """
+    Updates the due date and the count of the current piece
+    """
+    print('Placeholder text for updating google sheet')
 
        
 
