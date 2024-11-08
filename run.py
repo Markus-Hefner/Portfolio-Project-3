@@ -29,41 +29,28 @@ def main_menu():
     The user decides whether to practice, add a new piece or show repertoire
     """
     print("Welcome to the main menu!")
-    print("What would you like to do?")
-    print("Type 'p' and press 'Enter' if you want to start practicing.")
-    print("Type 'a' and press 'Enter' if you want to add a new piece.")
+    print("What would you like to do?\n")
     print("Type 'r' and press 'Enter' if you want to see your repertoire.")
+    print("Type 'a' and press 'Enter' if you want to add a new piece.")
+    print("Type 'p' and press 'Enter' if you want to start practicing.")
     print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
 
     user_decision = input()
 
-    if user_decision.lower() == "p":
-        print('\nLet\'s pracitce!\n')
-        pick_a_piece()
+    if user_decision.lower() == "r":
+        print('\nLet\'s check out your repertoire\n')
+        show_repertoire()
     elif user_decision.lower() == "a":
         print('\nLet\'s add a new piece\n')
         add_new_piece()
-    elif user_decision.lower() == "r":
-        print('\nLet\'s check out your repertoire\n')
-        show_repertoire()
+    elif user_decision.lower() == "p":
+        print('\nLet\'s pracitce!\n')
+        pick_a_piece()
     elif user_decision.lower() == "x":
         exit_programme()
     else:
         print('\nPlease enter correct value.\n')
         main_menu()
-
-
-"""
-=== Exit section ===
-This code would go in the run.py file since it's so small
-"""
-
-
-def exit_programme():
-    """
-    Exits the programm
-    """
-    print("\nSee you soon :-)")
 
 
 """
@@ -85,6 +72,125 @@ def show_repertoire():
         print(f'Additional Info: {i[4]}\n')
 
     main_menu()
+
+
+"""
+=== Exit section ===
+This code would go in the run.py file since it's so small
+"""
+
+
+def exit_programme():
+    """
+    Exits the programm
+    """
+    print("\nSee you soon :-)")
+
+
+"""
+=== Add New Piece section ===
+This code would go in a new file called piece.py
+Calls of functions from that file would be adjusted accordingly
+"""
+
+
+def add_new_piece():
+    """
+    Adds a new piece to spreadsheet
+    """
+    while True:
+        print("Please enter the title of the new piece you wish to add.")
+        print("Press 'Enter' to confirm.")
+        title = input("Title:\n")
+
+        # Check if the title already exists in the spreadsheet
+        existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
+        print(f'Here are all existing titles: {existing_titles}')  # check
+
+        if title.lower() in existing_titles:
+            print("\nThis piece already exists in your repertoire.")
+            print("Please choose another title or add additional information.")
+            print(f'E.g.: "{title} (other Version)"\n')
+            print("Press 'Enter' to confirm.")
+            continue
+        # Check if the title is empty
+        elif title == "":
+            print("Title cannot be empty.\n")
+            continue
+        else:
+            pass
+
+        print("\nPlease enter the composer of the piece. (Optional)")
+        print("Press 'Enter' to confirm.")
+        composer = input("Composer:\n")
+        print("\nPlease enter the arranger of the piece. (Optional)")
+        print("Press 'Enter' to confirm.")
+        arranger = input("Arranger:\n")
+        print("\nPlease enter additional information. (Optional)")
+        print("Press 'Enter' to confirm.")
+        additional_info = input("Additional information:\n")
+
+        print("\nPlease confirm the following details are correct:\n")
+        print(f"Title: {title}")
+        print(f"Composer: {composer}")
+        print(f"Arranger: {arranger}")
+        print(f"Additional information: {additional_info}\n")
+
+        answer = yes_no_validation()
+        print(answer)
+        if answer is True:
+            break
+        else:
+            print("\nPlease re-enter the details.\n")
+
+    new_piece = []
+    index_number = get_index_number() + 1
+    created_date = datetime.datetime.now().date()
+    count = 1
+
+    new_piece.append(index_number)
+    new_piece.append(title)
+    new_piece.append(composer)
+    new_piece.append(arranger)
+    new_piece.append(additional_info)
+    new_piece.append(convert_date_to_string(created_date))
+    new_piece.append(count)
+
+    add_piece_to_index(new_piece)
+    add_new_worksheet(new_piece)
+
+    print("\nNew piece has been added to your repertoire\n")
+
+    main_menu()
+
+
+def get_index_number():
+    """
+    Gets the index number of the last piece in the index
+    """
+    print(get_index().col_values(1))
+    index_number = get_index().col_values(1)
+    print(index_number)
+    if len(index_number) == 1:
+        return 0
+    else:
+        return int(index_number[-1])
+
+
+def add_piece_to_index(new_piece):
+    """
+    Adds a new piece to the index
+    """
+    get_index().append_row(new_piece)
+
+
+def add_new_worksheet(new_piece):
+    """
+    Adds a new worksheet with the name of the piece
+    to the spreadsheet for later use
+    """
+    new_worksheet = SHEET.add_worksheet(title=new_piece[1], rows="1", cols="10")
+    new_worksheet.append_row(new_piece)
 
 
 """
@@ -296,112 +402,6 @@ class PracticePiece:
         self.additional_info = additional_info
         self.due_date = due_date
         self.count = count
-
-
-"""
-=== Add New Piece section ===
-This code would go in a new file called piece.py
-Calls of functions from that file would be adjusted accordingly
-"""
-
-
-def add_new_piece():
-    """
-    Adds a new piece to spreadsheet
-    """
-    while True:
-        print("Please enter the title of the new piece you wish to add.")
-        print("Press 'Enter' to confirm.")
-        title = input("Title:\n")
-
-        # Check if the title already exists in the spreadsheet
-        existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
-        print(f'Here are all existing titles: {existing_titles}')  # check
-
-        if title.lower() in existing_titles:
-            print("\nThis piece already exists in your repertoire.")
-            print("Please choose another title or add additional information.")
-            print(f'E.g.: "{title} (other Version)"\n')
-            print("Press 'Enter' to confirm.")
-            continue
-        # Check if the title is empty
-        elif title == "":
-            print("Title cannot be empty.\n")
-            continue
-        else:
-            pass
-
-        print("\nPlease enter the composer of the piece. (Optional)")
-        print("Press 'Enter' to confirm.")
-        composer = input("Composer:\n")
-        print("\nPlease enter the arranger of the piece. (Optional)")
-        print("Press 'Enter' to confirm.")
-        arranger = input("Arranger:\n")
-        print("\nPlease enter additional information. (Optional)")
-        print("Press 'Enter' to confirm.")
-        additional_info = input("Additional information:\n")
-
-        print("\nPlease confirm the following details are correct:\n")
-        print(f"Title: {title}")
-        print(f"Composer: {composer}")
-        print(f"Arranger: {arranger}")
-        print(f"Additional information: {additional_info}\n")
-
-        answer = yes_no_validation()
-        print(answer)
-        if answer is True:
-            break
-        else:
-            print("\nPlease re-enter the details.\n")
-
-    new_piece = []
-    index_number = get_index_number() + 1
-    created_date = datetime.datetime.now().date()
-    count = 1
-
-    new_piece.append(index_number)
-    new_piece.append(title)
-    new_piece.append(composer)
-    new_piece.append(arranger)
-    new_piece.append(additional_info)
-    new_piece.append(convert_date_to_string(created_date))
-    new_piece.append(count)
-
-    add_piece_to_index(new_piece)
-    add_new_worksheet(new_piece)
-
-    print("\nNew piece has been added to your repertoire\n")
-
-    main_menu()
-
-
-def get_index_number():
-    """
-    Gets the index number of the last piece in the index
-    """
-    print(get_index().col_values(1))
-    index_number = get_index().col_values(1)
-    print(index_number)
-    if len(index_number) == 1:
-        return 0
-    else:
-        return int(index_number[-1])
-
-
-def add_piece_to_index(new_piece):
-    """
-    Adds a new piece to the index
-    """
-    get_index().append_row(new_piece)
-
-
-def add_new_worksheet(new_piece):
-    """
-    Adds a new worksheet with the name of the piece
-    to the spreadsheet for later use
-    """
-    new_worksheet = SHEET.add_worksheet(title=new_piece[1], rows="1", cols="10")
-    new_worksheet.append_row(new_piece)
 
 
 """
