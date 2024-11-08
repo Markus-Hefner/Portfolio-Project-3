@@ -18,6 +18,44 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 
+def main_menu():
+    """
+    The user decides whether to practice, add a new piece or show repertoire
+    """
+    print("Welcome to the main menu!")
+    print("What would you like to do?")
+    print("Type 'p' and press 'Enter' if you want to start practicing.")
+    print("Type 'a' and press 'Enter' if you want to add a new piece.")
+    print("Type 'r' and press 'Enter' if you want to see your repertoire.")
+    print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
+
+    user_decision = input()
+
+    if user_decision.lower() == "p":
+        print('\nLet\'s pracitce!\n')
+        pick_a_piece()
+    elif user_decision.lower() == "a":
+        print('\nLet\'s add a new piece\n')
+        add_new_piece()
+    elif user_decision.lower() == "r":
+        print('\nLet\'s check out your repertoire\n')
+        show_repertoire()
+    elif user_decision.lower() == "x":
+        exit_programme()
+    else:
+        print('\nPlease enter correct value.\n')
+        main_menu()
+
+def show_repertoire():
+    """
+    Shows repetoire of pieces
+    """
+    print("Your repetoire:\n")
+    for i in get_all_index_data():
+        print(f'Index: {i[0]}\nTitle: {i[1]}\nComposer: {i[2]}\nArranger: {i[3]}\nAdditional Info: {i[4]}\n')
+    
+    main_menu()
+
 def get_index():
     """
     Gets the index worksheet
@@ -180,43 +218,6 @@ def add_new_worksheet(new_piece):
     
     #   print(f"Successfully created a new worksheet for {data[1]}")
 
-def main_menu():
-    """
-    The user decides whether to practice, add a new piece or show repertoire
-    """
-    print("What would you like to do?")
-    print("Type 'p' and press 'Enter' if you want to start practicing.")
-    print("Type 'a' and press 'Enter' if you want to add a new piece.")
-    print("Type 'r' and press 'Enter' if you want to see your repertoire.")
-    print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
-
-    user_decision = input()
-
-    if user_decision.lower() == "p":
-        print('\nLet\'s pracitce!\n')
-        pick_a_piece()
-    elif user_decision.lower() == "a":
-        print('\nLet\'s add a new piece\n')
-        add_new_piece()
-    elif user_decision.lower() == "r":
-        print('\nLet\'s check out your repertoire\n')
-        show_repertoire()
-    elif user_decision.lower() == "x":
-        exit_programme()
-    else:
-        print('\nPlease enter correct value.\n')
-        main_menu()
-
-def show_repertoire():
-    """
-    Shows repetoire of pieces
-    """
-    print("Your repetoire:\n")
-    for i in get_all_index_data():
-        print(f'Index: {i[0]}\nTitle: {i[1]}\nComposer: {i[2]}\nArranger: {i[3]}\nAdditional Info: {i[4]}\n')
-    
-    main_menu()
-
 def pick_a_piece():
     """
     Picks a piece from the index
@@ -275,7 +276,7 @@ def practice_piece(current_piece):
         print('\nGreat let\'s go!')
         print(f'Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
-        answer = three_options_validation()
+        answer = well_okay_bad_validation()
 
         new_due_date = update_due_date_and_count(current_piece.due_date, current_piece.count, answer)[0]
         print(f'The new due date is {new_due_date}') # check print statement
@@ -314,7 +315,7 @@ def practice_piece(current_piece):
             print('Let\'s move on to the next piece.')
             break
 
-def three_options_validation():
+def well_okay_bad_validation():
     """
     Validates the user input for three options (well, okay, bad)
     """
