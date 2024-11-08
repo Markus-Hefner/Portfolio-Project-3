@@ -229,32 +229,45 @@ def pick_a_piece():
         print('Alright, let\'s move on to the next piece.')
 
 def practice_piece(current_piece):
-    print('\nGreat let\'s go!')
-    print(f'Play {current_piece.title} and let us now how it went.\n')
-    print('How did it go?')
-    answer = three_options_validation()
-    new_due_date = update_due_date(current_piece.due_date, current_piece.count, answer)
-    print(new_due_date) # check print statement
-    check_due_date(new_due_date)
-    if answer == 2:
-        print('Great!')
-        # [done] call function to update the due date. (Variable with stored due date is needed and variable with the current days to be added to the due date)
-        
-    # elif answer == 1:
-    #     print('Alright, that was quite good let\'s try again.')
-    #     # [done] check if due date is in the future
-    #     if check_due_date(new_due_date) == True:
-    #     # [done] if yes print message that you can move on to the next piece and...
-    #     print('Congratulations! You can move on to the next piece :-)')
-    #     # [done]... update the due date in the spreadsheet (-> the spreadsheet update will happen in the pick_a_piece function)
-    #         current_piece.due_date = new_due_date
-    #     # if no ask user if they want to practice the piece again
-    #     else:
-    #         print('Would you like to practice the piece again?')
-    #         answer = yes_no_validation()
-    #     # if yes start again at 'Great let's go!'. Here a loop is needed until either the due date for the piece is in the future or the user doesn't want to practice the piece anymore. So...
-    #     # if the user says no to practicing the piece again, update the spreadsheet and...
-    #     # ... ask if they want to move on to the next piece or go back to the main menu.
+    while True:
+        print('\nGreat let\'s go!')
+        print(f'Play {current_piece.title} and let us now how it went.\n')
+        print('How did it go?')
+        answer = three_options_validation()
+        new_due_date = update_due_date(current_piece.due_date, current_piece.count, answer)
+        print(new_due_date) # check print statement
+        days_difference = check_due_date(new_due_date)
+        print(days_difference) # check print statement
+        if days_difference <= 0:
+            print('Due date updated. Would you like to go again?')
+            answer_2 = yes_no_validation()
+            if answer_2 == True:
+                continue
+            else:
+                # update due date in google sheet
+                print('Alright, let\'s move on to the next piece.')
+                # from here it goes back to the loop in pick_a_piece
+
+
+        if answer == 2:
+            print('Great!')
+            # [done] call function to update the due date. (Variable with stored due date is needed and variable with the current days to be added to the due date)
+            
+        # elif answer == 1:
+        #     print('Alright, that was quite good let\'s try again.')
+        #     # [done] check if due date is in the future
+        #     if check_due_date(new_due_date) == True:
+        #     # [done] if yes print message that you can move on to the next piece and...
+        #     print('Congratulations! You can move on to the next piece :-)')
+        #     # [done]... update the due date in the spreadsheet (-> the spreadsheet update will happen in the pick_a_piece function)
+        #         current_piece.due_date = new_due_date
+        #     # if no ask user if they want to practice the piece again
+        #     else:
+        #         print('Would you like to practice the piece again?')
+        #         answer = yes_no_validation()
+        #     # if yes start again at 'Great let's go!'. Here a loop is needed until either the due date for the piece is in the future or the user doesn't want to practice the piece anymore. So...
+        #     # if the user says no to practicing the piece again, update the spreadsheet and...
+        #     # ... ask if they want to move on to the next piece or go back to the main menu.
 
 
 def three_options_validation():
@@ -277,7 +290,9 @@ def three_options_validation():
 
 def update_due_date(due_date, count, answer):
     """
-    Updates due date using the count value and a factor depending on the answer variable
+    Updates due date using the count value and a factor depending on the answer variable.
+    If 2 is passed as the answer variable, the due date is updated to the current date plus the new count value.
+    If 1 or 0 is passed as the answer variable, the due date is updated to the old due date plus the new count value.
     """
     if answer == 2:
         factor = 1.5
@@ -299,12 +314,13 @@ def check_due_date(new_due_date):
     """
     Checks if the new due date is in the future
     """
-    if convert_string_to_date(new_due_date) > datetime.datetime.now().date():
-        days_difference = (convert_string_to_date(new_due_date) - datetime.datetime.now().date()).days
-        print(f'Great its {days_difference} days in the future') # check print statement
-        return days_difference
-    else:
-        return 0
+    # if convert_string_to_date(new_due_date) > datetime.datetime.now().date():
+    #     days_difference = (convert_string_to_date(new_due_date) - datetime.datetime.now().date()).days
+    #     print(f'Great its {days_difference} days in the future') # check print statement
+    #     return days_difference
+    # else:
+    #     return 0
+    return (convert_string_to_date(new_due_date) - datetime.datetime.now().date()).days
     
 
 def create_due_list(data):
