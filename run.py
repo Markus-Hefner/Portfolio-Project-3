@@ -18,11 +18,24 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 
-index = SHEET.worksheet('Index')
+def get_index():
+    """
+    Gets the index worksheet
+    """
+    return SHEET.worksheet('Index')
 
-data = index.get_all_values()
+# index = SHEET.worksheet('Index')
 
-due_dates = [col[5] for col in data if col[5] != "Timestamp"]
+def get_all_index_data():
+    """
+    Gets all data in the index worksheet
+    """
+    index = get_index()
+    return index.get_all_values()
+
+# index_data = index.get_all_values()
+
+# due_dates = [col[5] for col in index_data if col[5] != "Timestamp"]
 
 def add_new_piece():
     """
@@ -33,7 +46,8 @@ def add_new_piece():
         title = input("Title:\n")
 
         # Check if the title already exists in the spreadsheet
-        existing_titles = [col[1].lower() for col in data if col[1].lower() != "title"]
+        existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
+        print(f'Here are all existing titles: {existing_titles}') # check statement
 
         if title.lower() in existing_titles:
             print("\nThis piece already exists in your repertoire.")
@@ -125,8 +139,8 @@ def get_index_number():
     """
     Gets the index number of the last piece in the index
     """
-    print(index.col_values(1))
-    index_number = index.col_values(1)
+    print(get_index().col_values(1))
+    index_number = get_index().col_values(1)
     print(index_number)
     if len(index_number) == 1:
         return 0
@@ -151,18 +165,18 @@ def convert_string_to_date(str_date):
     """
     return datetime.datetime.strptime(str_date, '%Y-%m-%d').date()
 
-def add_piece_to_index(data):
+def add_piece_to_index(new_piece):
     """
     Adds a new piece to the index
     """
-    index.append_row(data)
+    get_index().append_row(new_piece)
 
-def add_new_worksheet(data):
+def add_new_worksheet(new_piece):
     """
     Adds a new worksheet with the name of the piece to the spreadsheet for later use
     """
-    new_worksheet = SHEET.add_worksheet(title = data[1], rows="1", cols="10")
-    new_worksheet.append_row(data)
+    new_worksheet = SHEET.add_worksheet(title = new_piece[1], rows="1", cols="10")
+    new_worksheet.append_row(new_piece)
     
     #   print(f"Successfully created a new worksheet for {data[1]}")
 
@@ -198,7 +212,7 @@ def show_repertoire():
     Shows repetoire of pieces
     """
     print("Your repetoire:\n")
-    for i in data:
+    for i in get_all_index_data():
         print(f'Index: {i[0]}\nTitle: {i[1]}\nComposer: {i[2]}\nArranger: {i[3]}\nAdditional Info: {i[4]}\n')
     
     main_menu()
@@ -207,7 +221,7 @@ def pick_a_piece():
     """
     Picks a piece from the index
     """
-    due_pieces = create_due_list(data)
+    due_pieces = create_due_list(get_all_index_data())
     print(due_pieces) # check print statement
     sorted_due_pieces = sort_by_timestamp(due_pieces)
     print(sorted_due_pieces) # check print statement
@@ -349,16 +363,18 @@ def check_due_date(new_due_date):
     return (convert_string_to_date(new_due_date) - datetime.datetime.now().date()).days
     
 
-def create_due_list(data):
+def create_due_list(all_index_data):
     """
     Removes the list item with the headings in it (which is also a list).
     Removes list items of which the timestamp is > today.
     """
-    data.pop(0)
-    due_list = [col for col in data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
+    print(f'here is all index data: {all_index_data}') # check statement
+    all_index_data.pop(0)
+    due_list = [col for col in all_index_data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
+    print(f'here is the due_list: {due_list}') # check statement
     return due_list
 
-def sort_by_timestamp(data):
+def sort_by_timestamp(due_pieces):
     """
     Sorts the from the google sheet retrieved list of lists by last practiced
     """
@@ -366,7 +382,7 @@ def sort_by_timestamp(data):
     # print(i)
     # print(i[5])
     # print(type(i[5]))
-    return sorted(data, key = lambda e: e[5])
+    return sorted(due_pieces, key = lambda e: e[5])
 
 def exit_programme():
     """
