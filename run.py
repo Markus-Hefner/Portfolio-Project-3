@@ -5,6 +5,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import datetime
+import math
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -220,11 +221,11 @@ def start_practicing():
     print('Would like to practice that now or move on to the next?')
     answer = yes_no_validation()
     if answer == True:
-        print('Great let\' go!')
+        print('\nGreat let\'s go!')
         print(f'Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
         answer = three_options_validation()
-        if answer = 2:
+        if answer == 2:
             print('Great!')
             update_due_date(current_piece.due_date, current_piece.count, answer)
             # call function to update the due date. (Variable with stored due date is needed and variable with the current days to be added to the due date)
@@ -243,30 +244,37 @@ def start_practicing():
 
 def three_options_validation():
     """
-    Validates the user input for the three options:
-    - good
-    - ok
-    - bad
+    Validates the user input for three options (well, okay, bad)
     """
     print("Type 'w' and press 'Enter' if it went well. (at tempo, no errors)")
     print("Type 'o' and press 'Enter' if it went okay. (not at tempo or only a few errors)")
-    print("Type 'b' and press 'Enter' if it went bad. (not at tempo and some errors)\n")
+    print("Type 'b' and press 'Enter' if it went bad. (not at tempo and some errors)")
     while True:
         user_input = input()
-        if confirmation.lower() == "w":
+        if user_input.lower() == "w":
             return 2
-        elif confirmation.lower() == "o":
+        elif user_input.lower() == "o":
             return 1
-        elif confirmation.lower() == "b":
+        elif user_input.lower() == "b":
             return o
         else:
             print("\nInvalid input.\n")
 
-def update_due_date(current_piece.due_date, current_piece.count, answer):
+def update_due_date(due_date, count, answer):
     """
     Updates due date using the count value and a factor depending on the answer variable
     """
-    
+    if answer == 2:
+        factor = 1.5
+    elif answer == 1:
+        factor = 1
+    else:
+        factor = 0.5
+    new_count = math.ceil(int(count) * factor)
+    print(new_count) # check print statement
+    new_due_date = convert_string_to_date(due_date) + datetime.timedelta(days=new_count)
+    print(new_due_date) # check print statement
+    return convert_date_to_string(new_due_date)
 
 
 def create_due_list(data):
