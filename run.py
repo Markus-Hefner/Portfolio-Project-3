@@ -214,6 +214,7 @@ def pick_a_piece():
     print(due_pieces) # check print statement
     sorted_due_pieces = sort_by_timestamp(due_pieces)
     print(sorted_due_pieces) # check print statement
+    # Here a loop has to start to iterate through the pieces. Before there should be the question if the user wants to proceed or go back to the main menu.
     a, b, c, d, e, f, g = sorted_due_pieces[0] # this needs to be looped later (if the user is done practicing the piece the loop has to get to the next item)
 
     current_piece = PracticePiece(a, b, c, d, e, f, g)
@@ -244,13 +245,28 @@ def practice_piece(current_piece):
             if answer_2 == True:
                 continue
             else:
-                # update due date in google sheet
+                # update due date in google sheet!!!
                 print('Alright, let\'s move on to the next piece.')
+                break
                 # from here it goes back to the loop in pick_a_piece
+        if days_difference == 1:
+            print(f'The next due date for the piece would be {new_due_date}.')
+            print('Would you like to practice it again anyway?')
+            answer_3 = yes_no_validation()
+            if answer_3 == True:
+                continue
+            else:
+                # update due date in google sheet!!!
+                break
+        else:
+            print(f'Great! The piece won\'t be due for another {days_difference} days.')
+            # update due date in google sheet!!!
+            print('Let\'s move on to the next piece.')
+            break
 
 
-        if answer == 2:
-            print('Great!')
+        # if answer == 2:
+        #     print('Great!')
             # [done] call function to update the due date. (Variable with stored due date is needed and variable with the current days to be added to the due date)
             
         # elif answer == 1:
@@ -308,6 +324,7 @@ def update_due_date(due_date, count, answer):
     else:
         new_due_date = convert_string_to_date(due_date) + datetime.timedelta(days=new_count)
         print(new_due_date) # check print statement
+    # Update count on spreadsheet!!!
     return convert_date_to_string(new_due_date)
 
 def check_due_date(new_due_date):
