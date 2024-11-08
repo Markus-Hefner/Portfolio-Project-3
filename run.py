@@ -18,8 +18,10 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 
-# === Main menu section ===
-# This code would go in the run.py file
+"""
+=== Main menu section ===
+This code would go in the run.py file
+"""
 
 
 def main_menu():
@@ -50,8 +52,11 @@ def main_menu():
         print('\nPlease enter correct value.\n')
         main_menu()
 
-# === Exit section ===
-# This code would go in the run.py file since it's so small
+
+"""
+=== Exit section ===
+This code would go in the run.py file since it's so small
+"""
 
 
 def exit_programme():
@@ -60,8 +65,11 @@ def exit_programme():
     """
     print("\nSee you soon :-)")
 
-# === Show Repertoire section ===
-# This code would go in the run.py file since it's so small
+
+"""
+=== Show Repertoire section ===
+This code would go in the run.py file since it's so small
+"""
 
 
 def show_repertoire():
@@ -79,9 +87,11 @@ def show_repertoire():
     main_menu()
 
 
-# === Practice section ===
-# This code would go in a new file called practice.py
-# Calls of functions from that file would be adjusted accordingly
+"""
+=== Practice section ===
+This code would go in a new file called practice.py
+Calls of functions from that file would be adjusted accordingly
+"""
 
 
 def pick_a_piece():
@@ -287,9 +297,12 @@ class PracticePiece:
         self.due_date = due_date
         self.count = count
 
-# === Add New Piece section ===
-# This code would go in a new file called piece.py
-# Calls of functions from that file would be adjusted accordingly
+
+"""
+=== Add New Piece section ===
+This code would go in a new file called piece.py
+Calls of functions from that file would be adjusted accordingly
+"""
 
 
 def add_new_piece():
@@ -390,9 +403,12 @@ def add_new_worksheet(new_piece):
     new_worksheet = SHEET.add_worksheet(title=new_piece[1], rows="1", cols="10")
     new_worksheet.append_row(new_piece)
 
-# === Utensils section ===
-# This code would go in a new file called utensils.py
-# Calls of functions from that file would be adjusted accordingly
+
+"""
+=== Utensils section ===
+This code would go in a new file called utensils.py
+Calls of functions from that file would be adjusted accordingly
+"""
 
 
 def get_all_index_data():
