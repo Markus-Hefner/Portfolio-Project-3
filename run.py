@@ -412,19 +412,7 @@ def update_index(current_piece):
     """
     Updates the due date and the count of the current piece
     """
-    current_index = current_piece.index
-    print(f'check current index {current_index}')
-    print('Placeholder text for updating google sheet')
-    
-
-       
-
+    get_index().update_cell(int(current_piece.index) + 1, 6, current_piece.due_date)
+    get_index().update_cell(int(current_piece.index) + 1, 7, current_piece.count)
 
 main_menu()
-
-
-
-
-
-
-
