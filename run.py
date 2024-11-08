@@ -211,11 +211,9 @@ def pick_a_piece():
     # Here a loop has to start to iterate through the pieces. Before there should be the question if the user wants to proceed or go back to the main menu.
     sorted_due_pieces_len = len(sorted_due_pieces)
     print(sorted_due_pieces_len) # check print statement
-    while i < sorted_due_pieces_len:
-        
+    iterables_list = create_iterables_list(sorted_due_pieces_len)
 
-
-    # for i in sorted_due_pieces:
+    for i in iterables_list:
         a, b, c, d, e, f, g = sorted_due_pieces[i] # this needs to be looped later (if the user is done practicing the piece the loop has to get to the next item)
         i += 1
         current_piece = PracticePiece(a, b, c, d, e, f, g)
@@ -226,7 +224,6 @@ def pick_a_piece():
         answer = yes_no_validation()
         if answer == True:
             practice_piece(current_piece)
-        
         else:
             print('Alright, let\'s move on to the next piece.')
     
@@ -234,6 +231,20 @@ def pick_a_piece():
     print('Hope to see you tomorrow again :-)')
     
     # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
+
+def create_iterables_list(sorted_due_pieces_len):
+    """
+    Creates a list of integers to loop over in order to create as many classes
+    of pieces to practice as there are lists (representing the pieces) in the
+    sorted_due_pieces list since indices cannot be lists
+    """
+    item = 0
+    iterables_list = []
+    while item < sorted_due_pieces_len:
+        iterables_list.append(item)
+        item += 1
+    print(iterables_list)
+    return iterables_list
 
 def practice_piece(current_piece):
     """
