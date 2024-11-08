@@ -18,6 +18,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 
+# === Main menu section ===
+# This code would go in the run.py file
+
 
 def main_menu():
     """
@@ -47,6 +50,19 @@ def main_menu():
         print('\nPlease enter correct value.\n')
         main_menu()
 
+# === Exit section ===
+# This code would go in the run.py file since it's so small
+
+
+def exit_programme():
+    """
+    Exits the programm
+    """
+    print("\nSee you soon :-)")
+
+# === Show Repertoire section ===
+# This code would go in the run.py file since it's so small
+
 
 def show_repertoire():
     """
@@ -63,163 +79,9 @@ def show_repertoire():
     main_menu()
 
 
-def get_index():
-    """
-    Gets the index worksheet
-    """
-    return SHEET.worksheet('Index')
-
-# index = SHEET.worksheet('Index')
-
-
-def get_all_index_data():
-    """
-    Gets all data in the index worksheet
-    """
-    index = get_index()
-    return index.get_all_values()
-
-# index_data = index.get_all_values()
-
-# due_dates = [col[5] for col in index_data if col[5] != "Timestamp"]
-
-
-def add_new_piece():
-    """
-    Adds a new piece to spreadsheet
-    """
-    while True:
-        print("Please enter the title of the new piece you wish to add.")
-        print("Press 'Enter' to confirm.")
-        title = input("Title:\n")
-
-        # Check if the title already exists in the spreadsheet
-        existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
-        print(f'Here are all existing titles: {existing_titles}')  # check
-
-        if title.lower() in existing_titles:
-            print("\nThis piece already exists in your repertoire.")
-            print("Please choose another title or add additional information.")
-            print(f'E.g.: "{title} (other Version)"\n')
-            print("Press 'Enter' to confirm.")
-            continue
-        # Check if the title is empty
-        elif title == "":
-            print("Title cannot be empty.\n")
-            continue
-        else:
-            pass
-
-        print("\nPlease enter the composer of the piece. (Optional)")
-        print("Press 'Enter' to confirm.")
-        composer = input("Composer:\n")
-        print("\nPlease enter the arranger of the piece. (Optional)")
-        print("Press 'Enter' to confirm.")
-        arranger = input("Arranger:\n")
-        print("\nPlease enter additional information. (Optional)")
-        print("Press 'Enter' to confirm.")
-        additional_info = input("Additional information:\n")
-
-        print("\nPlease confirm the following details are correct:\n")
-        print(f"Title: {title}")
-        print(f"Composer: {composer}")
-        print(f"Arranger: {arranger}")
-        print(f"Additional information: {additional_info}\n")
-
-        answer = yes_no_validation()
-        print(answer)
-        if answer is True:
-            break
-        else:
-            print("\nPlease re-enter the details.\n")
-
-    new_piece = []
-    index_number = get_index_number() + 1
-    created_date = get_current_date()
-    count = 1
-
-    new_piece.append(index_number)
-    new_piece.append(title)
-    new_piece.append(composer)
-    new_piece.append(arranger)
-    new_piece.append(additional_info)
-    new_piece.append(convert_date_to_string(created_date))
-    new_piece.append(count)
-
-    add_piece_to_index(new_piece)
-    add_new_worksheet(new_piece)
-
-    print("\nNew piece has been added to your repertoire\n")
-
-    main_menu()
-
-
-def yes_no_validation():
-    """
-    Validates the user's answer to be yes or no
-    """
-    while True:
-        print("Type 'y' for yes and press 'Enter'.")
-        print("Otherwise type 'n' for no and press 'Enter':")
-        confirmation = input()
-        if confirmation.lower() == "y":
-            return True
-        elif confirmation.lower() == "n":
-            return False
-        else:
-            print("\nInvalid input.\n")
-
-
-def get_index_number():
-    """
-    Gets the index number of the last piece in the index
-    """
-    print(get_index().col_values(1))
-    index_number = get_index().col_values(1)
-    print(index_number)
-    if len(index_number) == 1:
-        return 0
-    else:
-        return int(index_number[-1])
-
-
-def get_current_date():
-    """
-    Returns current date in the Format "YYYY-MM-DD"
-    """
-    return datetime.datetime.now().date()
-
-
-def convert_date_to_string(date):
-    """
-    Converts a date in the format "YYYY-MM-DD" to a string of the same format"
-    """
-    return date.strftime('%Y-%m-%d')
-
-
-def convert_string_to_date(str_date):
-    """
-    Converts a string in the format "YYYY-MM-DD" to a date of the same format"
-    """
-    return datetime.datetime.strptime(str_date, '%Y-%m-%d').date()
-
-
-def add_piece_to_index(new_piece):
-    """
-    Adds a new piece to the index
-    """
-    get_index().append_row(new_piece)
-
-
-def add_new_worksheet(new_piece):
-    """
-    Adds a new worksheet with the name of the piece
-    to the spreadsheet for later use
-    """
-    new_worksheet = SHEET.add_worksheet(title=new_piece[1], rows="1", cols="10")
-    new_worksheet.append_row(new_piece)
-
-    #   print(f"Successfully created a new worksheet for {data[1]}")
+# === Practice section ===
+# This code would go in a new file called practice.py
+# Calls of functions from that file would be adjusted accordingly
 
 
 def pick_a_piece():
@@ -255,6 +117,30 @@ def pick_a_piece():
     print('Hope to see you tomorrow again :-)')
 
     main_menu()
+
+
+def create_due_list(all_index_data):
+    """
+    Removes the list item with the headings in it (which is also a list).
+    Removes list items of which the timestamp is > today.
+    """
+    print(f'here is all index data: {all_index_data}')  # check
+    all_index_data.pop(0)
+    due_list = [col for col in all_index_data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
+    # Alternative version:
+    # due_list = []
+    # for col in all_index_data:
+    #     if convert_string_to_date(col[5]) <= datetime.datetime.now().date():
+    #         due_list.append(col)
+    print(f'here is the due_list: {due_list}')  # check
+    return due_list
+
+
+def sort_by_timestamp(due_pieces):
+    """
+    Sorts the from the google sheet retrieved list of lists by last practiced
+    """
+    return sorted(due_pieces, key=lambda e: e[5])
 
 
 def create_iterables_list(sorted_due_pieces_len):
@@ -380,35 +266,12 @@ def check_due_date(new_due_date):
     return (convert_string_to_date(new_due_date) - datetime.datetime.now().date()).days
 
 
-def create_due_list(all_index_data):
+def update_index(current_piece):
     """
-    Removes the list item with the headings in it (which is also a list).
-    Removes list items of which the timestamp is > today.
+    Updates the due date and the count of the current piece
     """
-    print(f'here is all index data: {all_index_data}')  # check
-    all_index_data.pop(0)
-    due_list = [col for col in all_index_data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
-    # Alternative version:
-    # due_list = []
-    # for col in all_index_data:
-    #     if convert_string_to_date(col[5]) <= datetime.datetime.now().date():
-    #         due_list.append(col)
-    print(f'here is the due_list: {due_list}')  # check
-    return due_list
-
-
-def sort_by_timestamp(due_pieces):
-    """
-    Sorts the from the google sheet retrieved list of lists by last practiced
-    """
-    return sorted(due_pieces, key=lambda e: e[5])
-
-
-def exit_programme():
-    """
-    Exits the programm
-    """
-    print("\nSee you soon :-)")
+    get_index().update_cell(int(current_piece.index) + 1, 6, current_piece.due_date)
+    get_index().update_cell(int(current_piece.index) + 1, 7, current_piece.count)
 
 
 class PracticePiece:
@@ -424,13 +287,157 @@ class PracticePiece:
         self.due_date = due_date
         self.count = count
 
+# === Add New Piece section ===
+# This code would go in a new file called piece.py
+# Calls of functions from that file would be adjusted accordingly
 
-def update_index(current_piece):
+
+def add_new_piece():
     """
-    Updates the due date and the count of the current piece
+    Adds a new piece to spreadsheet
     """
-    get_index().update_cell(int(current_piece.index) + 1, 6, current_piece.due_date)
-    get_index().update_cell(int(current_piece.index) + 1, 7, current_piece.count)
+    while True:
+        print("Please enter the title of the new piece you wish to add.")
+        print("Press 'Enter' to confirm.")
+        title = input("Title:\n")
+
+        # Check if the title already exists in the spreadsheet
+        existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
+        print(f'Here are all existing titles: {existing_titles}')  # check
+
+        if title.lower() in existing_titles:
+            print("\nThis piece already exists in your repertoire.")
+            print("Please choose another title or add additional information.")
+            print(f'E.g.: "{title} (other Version)"\n')
+            print("Press 'Enter' to confirm.")
+            continue
+        # Check if the title is empty
+        elif title == "":
+            print("Title cannot be empty.\n")
+            continue
+        else:
+            pass
+
+        print("\nPlease enter the composer of the piece. (Optional)")
+        print("Press 'Enter' to confirm.")
+        composer = input("Composer:\n")
+        print("\nPlease enter the arranger of the piece. (Optional)")
+        print("Press 'Enter' to confirm.")
+        arranger = input("Arranger:\n")
+        print("\nPlease enter additional information. (Optional)")
+        print("Press 'Enter' to confirm.")
+        additional_info = input("Additional information:\n")
+
+        print("\nPlease confirm the following details are correct:\n")
+        print(f"Title: {title}")
+        print(f"Composer: {composer}")
+        print(f"Arranger: {arranger}")
+        print(f"Additional information: {additional_info}\n")
+
+        answer = yes_no_validation()
+        print(answer)
+        if answer is True:
+            break
+        else:
+            print("\nPlease re-enter the details.\n")
+
+    new_piece = []
+    index_number = get_index_number() + 1
+    created_date = datetime.datetime.now().date()
+    count = 1
+
+    new_piece.append(index_number)
+    new_piece.append(title)
+    new_piece.append(composer)
+    new_piece.append(arranger)
+    new_piece.append(additional_info)
+    new_piece.append(convert_date_to_string(created_date))
+    new_piece.append(count)
+
+    add_piece_to_index(new_piece)
+    add_new_worksheet(new_piece)
+
+    print("\nNew piece has been added to your repertoire\n")
+
+    main_menu()
+
+
+def get_index_number():
+    """
+    Gets the index number of the last piece in the index
+    """
+    print(get_index().col_values(1))
+    index_number = get_index().col_values(1)
+    print(index_number)
+    if len(index_number) == 1:
+        return 0
+    else:
+        return int(index_number[-1])
+
+
+def add_piece_to_index(new_piece):
+    """
+    Adds a new piece to the index
+    """
+    get_index().append_row(new_piece)
+
+
+def add_new_worksheet(new_piece):
+    """
+    Adds a new worksheet with the name of the piece
+    to the spreadsheet for later use
+    """
+    new_worksheet = SHEET.add_worksheet(title=new_piece[1], rows="1", cols="10")
+    new_worksheet.append_row(new_piece)
+
+# === Utensils section ===
+# This code would go in a new file called utensils.py
+# Calls of functions from that file would be adjusted accordingly
+
+
+def get_all_index_data():
+    """
+    Gets all data in the index worksheet
+    """
+    index = get_index()
+    return index.get_all_values()
+
+
+def get_index():
+    """
+    Gets the index worksheet
+    """
+    return SHEET.worksheet('Index')
+
+
+def yes_no_validation():
+    """
+    Validates the user's answer to be yes or no
+    """
+    while True:
+        print("Type 'y' for yes and press 'Enter'.")
+        print("Otherwise type 'n' for no and press 'Enter':")
+        confirmation = input()
+        if confirmation.lower() == "y":
+            return True
+        elif confirmation.lower() == "n":
+            return False
+        else:
+            print("\nInvalid input.\n")
+
+
+def convert_date_to_string(date):
+    """
+    Converts a date in the format "YYYY-MM-DD" to a string of the same format"
+    """
+    return date.strftime('%Y-%m-%d')
+
+
+def convert_string_to_date(str_date):
+    """
+    Converts a string in the format "YYYY-MM-DD" to a date of the same format"
+    """
+    return datetime.datetime.strptime(str_date, '%Y-%m-%d').date()
 
 
 main_menu()
