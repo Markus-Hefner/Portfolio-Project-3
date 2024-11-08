@@ -114,22 +114,10 @@ def add_new_piece():
 
         answer = yes_no_validation()
         print(answer)
-        if answer == True:
+        if answer is True:
             break
         else:
             print("\nPlease re-enter the details.\n")
-
-
-    # while True:
-    #     confirmation = input("Type 'y' for yes and press 'Enter'. Otherwise type 'n' for no and press 'Enter':\n")
-    #     if confirmation.lower() == "y":
-    #         print("\nNew piece has been added to your repertoire\n")
-    #         break
-    #     elif confirmation.lower() == "n":
-    #         print("\nPlease re-enter the details.\n")
-    #         add_new_piece()
-    #     else:
-    #         print("\nInvalid input.\n")
 
     new_piece = []
     index_number = get_index_number() + 1
@@ -163,16 +151,7 @@ def yes_no_validation():
             return False
         else:
             print("\nInvalid input.\n")
-        
-
-# def search_piece():
-#     """
-#     Searches for a piece in the spreadsheet
-#     """
-#     print("Please enter the title of the piece you wish to search for.\nPress 'Enter' to confirm.")
-#     search_title = input("Title:\n")
-    
-
+  
 def get_index_number():
     """
     Gets the index number of the last piece in the index
@@ -240,7 +219,7 @@ def pick_a_piece():
         print(f'The next piece to practice is {current_piece.title}.')
         print('Would like to practice that now? If not, we will move on to the next piece.')
         answer = yes_no_validation()
-        if answer == True:
+        if answer is True:
             practice_piece(current_piece)
         else:
             print('Alright, let\'s move on to the next piece.')
@@ -293,7 +272,7 @@ def practice_piece(current_piece):
         if days_difference <= 0:
             print('Due date updated. Would you like to go again?')
             answer_2 = yes_no_validation()
-            if answer_2 == True:
+            if answer_2 is True:
                 continue
             else:
                 update_index(current_piece)
@@ -304,7 +283,7 @@ def practice_piece(current_piece):
             print(f'The next due date for the piece would be {new_due_date}.')
             print('Would you like to practice it again anyway?')
             answer_3 = yes_no_validation()
-            if answer_3 == True:
+            if answer_3 is True:
                 continue
             else:
                 update_index(current_piece)
