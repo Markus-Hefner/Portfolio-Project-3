@@ -276,21 +276,26 @@ def practice_piece(current_piece):
         print(f'Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
         answer = three_options_validation()
+
         new_due_date = update_due_date_and_count(current_piece.due_date, current_piece.count, answer)[0]
         print(f'The new due date is {new_due_date}') # check print statement
+
         new_count = update_due_date_and_count(current_piece.due_date, current_piece.count, answer)[1]
         print(f'The new count is {new_count}') # check print statement
+
         current_piece.due_date = new_due_date
         current_piece.count = new_count
+
         days_difference = check_due_date(new_due_date)
         print(days_difference) # check print statement
+
         if days_difference <= 0:
             print('Due date updated. Would you like to go again?')
             answer_2 = yes_no_validation()
             if answer_2 == True:
                 continue
             else:
-                update_index(current_piece, current_piece.due_date, current_piece.count)
+                update_index(current_piece)
                 print('Alright, let\'s move on to the next piece.')
                 break
                 # from here it goes back to the loop in pick_a_piece
@@ -301,11 +306,11 @@ def practice_piece(current_piece):
             if answer_3 == True:
                 continue
             else:
-                update_index(current_piece, current_piece.due_date, current_piece.count)
+                update_index(current_piece)
                 break
         else:
             print(f'Great! The piece won\'t be due for another {days_difference} days.')
-            update_index(current_piece, current_piece.due_date, current_piece.count)
+            update_index(current_piece)
             print('Let\'s move on to the next piece.')
             break
 
@@ -403,11 +408,14 @@ class PracticePiece:
         self.due_date = due_date
         self.count = count
     
-def update_index(current_piece, due_date, count):
+def update_index(current_piece):
     """
     Updates the due date and the count of the current piece
     """
+    current_index = current_piece.index
+    print(f'check current index {current_index}')
     print('Placeholder text for updating google sheet')
+    
 
        
 
