@@ -82,6 +82,7 @@ def add_new_piece():
     new_piece = []
     index_number = get_index_number() + 1
     created_date = get_current_date()
+    count = 1
     
     new_piece.append(index_number)
     new_piece.append(title)
@@ -89,6 +90,7 @@ def add_new_piece():
     new_piece.append(arranger)
     new_piece.append(additional_info)
     new_piece.append(convert_date_to_string(created_date))
+    new_piece.append(count)
 
     add_piece_to_index(new_piece)
     add_new_worksheet(new_piece)
@@ -183,7 +185,7 @@ def practice_adding_or_repertoire():
 
     if user_decision.lower() == "p":
         print('\nLet\'s pracitce!\n')
-        start_practicing()
+        pick_a_piece()
     elif user_decision.lower() == "a":
         print('\nLet\'s add a new piece\n')
         add_new_piece()
@@ -204,9 +206,9 @@ def show_repertoire():
     
     # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
 
-def start_practicing():
+def pick_a_piece():
     """
-    Starts the practicing part
+    Picks a piece from the index
     """
     due_pieces = create_due_list(data)
     print(due_pieces) # check print statement
@@ -227,9 +229,10 @@ def start_practicing():
         answer = three_options_validation()
         if answer == 2:
             print('Great!')
-            update_due_date(current_piece.due_date, current_piece.count, answer)
-            # call function to update the due date. (Variable with stored due date is needed and variable with the current days to be added to the due date)
-            # check if due date is in the future
+            # [done] call function to update the due date. (Variable with stored due date is needed and variable with the current days to be added to the due date)
+            new_due_date = update_due_date(current_piece.due_date, current_piece.count, answer)
+            # [done] check if due date is in the future
+            check_due_date(new_due_date)
             # if yes print message that you can move on to the next piece and...
             # ... update the due date in the spreadsheet
             # if no ask user if they want to practice the piece again
@@ -276,6 +279,15 @@ def update_due_date(due_date, count, answer):
     print(new_due_date) # check print statement
     return convert_date_to_string(new_due_date)
 
+def check_due_date(new_due_date):
+    """
+    Checks if the new due date is in the future
+    """
+    if convert_string_to_date(new_due_date) > datetime.datetime.now().date():
+        return True
+    else:
+        return False
+    
 
 def create_due_list(data):
     """
