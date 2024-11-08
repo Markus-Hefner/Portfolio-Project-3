@@ -28,6 +28,7 @@ def main_menu():
     """
     The user decides whether to practice, add a new piece or show repertoire
     """
+    print("===========================")
     print("Welcome to the main menu!")
     print("What would you like to do?\n")
     print("Type 'r' and press 'Enter' if you want to see your repertoire.")
@@ -36,6 +37,7 @@ def main_menu():
     print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
 
     user_decision = input()
+    print("---------------------------")
 
     if user_decision.lower() == "r":
         print('\nLet\'s check out your repertoire\n')
@@ -110,8 +112,7 @@ def add_new_piece():
         if title.lower() in existing_titles:
             print("\nThis piece already exists in your repertoire.")
             print("Please choose another title or add additional information.")
-            print(f'E.g.: "{title} (other Version)"\n')
-            print("Press 'Enter' to confirm.")
+            print(f'(E.g.: "{title} (other Version)")\n')
             continue
         # Check if the title is empty
         elif title == "":
@@ -123,9 +124,11 @@ def add_new_piece():
         print("\nPlease enter the composer of the piece. (Optional)")
         print("Press 'Enter' to confirm.")
         composer = input("Composer:\n")
+
         print("\nPlease enter the arranger of the piece. (Optional)")
         print("Press 'Enter' to confirm.")
         arranger = input("Arranger:\n")
+
         print("\nPlease enter additional information. (Optional)")
         print("Press 'Enter' to confirm.")
         additional_info = input("Additional information:\n")
@@ -227,7 +230,7 @@ def pick_a_piece():
         if answer is True:
             practice_piece(current_piece)
         else:
-            print('Alright, let\'s move on to the next piece.')
+            print('Alright, let\'s move on to the next piece.\n')
 
     print('Congratulations, you got through all the material today')
     print('Hope to see you tomorrow again :-)')
@@ -307,7 +310,7 @@ def practice_piece(current_piece):
                 continue
             else:
                 update_index(current_piece)
-                print('Alright, let\'s move on to the next piece.')
+                print('Alright, let\'s move on to the next piece.\n')
                 break
                 # from here it goes back to the loop in pick_a_piece
         if days_diff == 1:
@@ -323,7 +326,7 @@ def practice_piece(current_piece):
             print("Great!")
             print(f'The piece won\'t be due for another {days_diff} days.')
             update_index(current_piece)
-            print('Let\'s move on to the next piece.')
+            print('Let\'s move on to the next piece.\n')
             break
 
 
@@ -336,6 +339,7 @@ def well_okay_bad_validation():
     print("Type 'b' and press 'Enter' if it went bad. (Not at tempo and some errors)")
     while True:
         user_input = input()
+        print("---------------------------")
         if user_input.lower() == "w":
             return 2
         elif user_input.lower() == "o":
@@ -434,6 +438,7 @@ def yes_no_validation():
         print("Type 'y' for yes and press 'Enter'.")
         print("Otherwise type 'n' for no and press 'Enter':")
         confirmation = input()
+        print("---------------------------")
         if confirmation.lower() == "y":
             return True
         elif confirmation.lower() == "n":
