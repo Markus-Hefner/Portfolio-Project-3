@@ -97,7 +97,7 @@ def add_new_piece():
 
     print("\nNew piece has been added to your repertoire\n")
     
-    # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
+    main_menu()
 
 def yes_no_validation():
     """
@@ -166,14 +166,15 @@ def add_new_worksheet(data):
     
     #   print(f"Successfully created a new worksheet for {data[1]}")
 
-def practice_adding_or_repertoire():
+def main_menu():
     """
     The user decides whether to practice, add a new piece or show repertoire
     """
     print("What would you like to do?")
     print("Type 'p' and press 'Enter' if you want to start practicing.")
     print("Type 'a' and press 'Enter' if you want to add a new piece.")
-    print("Type 'r' and press 'Enter' if you want to see your repertoire.\n")
+    print("Type 'r' and press 'Enter' if you want to see your repertoire.")
+    print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
 
     user_decision = input()
 
@@ -186,9 +187,11 @@ def practice_adding_or_repertoire():
     elif user_decision.lower() == "r":
         print('\nLet\'s check out your repertoire\n')
         show_repertoire()
+    elif user_decision.lower() == "x":
+        exit_programme()
     else:
         print('\nPlease enter correct value.\n')
-        practice_adding_or_repertoire()
+        main_menu()
 
 def show_repertoire():
     """
@@ -198,7 +201,7 @@ def show_repertoire():
     for i in data:
         print(f'Index: {i[0]}\nTitle: {i[1]}\nComposer: {i[2]}\nArranger: {i[3]}\nAdditional Info: {i[4]}\n')
     
-    # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
+    main_menu()
 
 def pick_a_piece():
     """
@@ -230,7 +233,7 @@ def pick_a_piece():
     print('Congratulations, you got through all the material today')
     print('Hope to see you tomorrow again :-)')
     
-    # practice_adding_or_index() (Comment in in final version. Commented out to not get into an endless loop while testing)
+    main_menu()
 
 def create_iterables_list(sorted_due_pieces_len):
     """
@@ -363,7 +366,13 @@ def sort_by_timestamp(data):
     # print(i)
     # print(i[5])
     # print(type(i[5]))
-    return sorted(data, key = lambda e: e[5]) 
+    return sorted(data, key = lambda e: e[5])
+
+def exit_programme():
+    """
+    Exits the programm
+    """
+    print("\nSee you soon :-)")
 
 class PracticePiece:
     """
@@ -387,7 +396,7 @@ def update_index(current_piece, due_date, count):
        
 
 
-practice_adding_or_repertoire()
+main_menu()
 
 
 
