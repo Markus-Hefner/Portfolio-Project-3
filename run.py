@@ -36,7 +36,7 @@ def main_menu():
     print("Type 'p' and press 'Enter' if you want to start practicing.")
     print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
 
-    user_decision = input()
+    user_decision = input("\n")
     print("---------------------------")
 
     if user_decision.lower() == "r":
@@ -338,7 +338,7 @@ def well_okay_bad_validation():
     print("Type 'o' and press 'Enter' if it went okay. (Not at tempo or only a few errors)")
     print("Type 'b' and press 'Enter' if it went bad. (Not at tempo and some errors)")
     while True:
-        user_input = input()
+        user_input = input("\n")
         print("---------------------------")
         if user_input.lower() == "w":
             return 2
@@ -437,7 +437,7 @@ def yes_no_validation():
     while True:
         print("Type 'y' for yes and press 'Enter'.")
         print("Otherwise type 'n' for no and press 'Enter':")
-        confirmation = input()
+        confirmation = input("\n")
         print("---------------------------")
         if confirmation.lower() == "y":
             return True
