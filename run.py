@@ -223,14 +223,29 @@ def pick_a_piece():
         current_piece = PracticePiece(a, b, c, d, e, f, g)
         # print(current_piece.due_date)  # check
 
-        print(f'The next piece to practice is {current_piece.title}.')
-        print('Would like to practice that now?')
-        print('If not, we will move on to the next piece.')
+        print(f'The next piece to practice is {current_piece.title}.\n')
+        # print('Would you like to practice that now?')
+        # print('If not, we will move on to the next piece.')
+        user_decision = [
+            ("p", "Type 'p' and press 'Enter' if you want to practice the piece now."),
+            ("n", "Type 'n' and press 'Enter' if you want to move on to the next piece."),
+            ("x", "Type 'x' and press 'Enter' if you want get back to the main menu.")
+        ]
+        answer = three_options_validation(user_decision)
+        if answer == 2:
+            practice_piece(current_piece)
+        elif answer == 1:
+            print('Alright, let\'s move on to the next piece.\n')
+            continue
+        else:
+            break
+        """
         answer = yes_no_validation()
         if answer is True:
             practice_piece(current_piece)
         else:
             print('Alright, let\'s move on to the next piece.\n')
+        """
 
     print('Congratulations, you got through all the material today')
     print('Hope to see you tomorrow again :-)')
