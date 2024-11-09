@@ -36,7 +36,7 @@ def main_menu():
     print("Type 'p' and press 'Enter' if you want to start practicing.")
     print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
 
-    user_decision = input("\n")
+    user_decision = input("\n").strip()
     print("---------------------------")
 
     if user_decision.lower() == "r":
@@ -103,7 +103,7 @@ def add_new_piece():
     while True:
         print("Please enter the title of the new piece you wish to add.")
         print("Press 'Enter' to confirm.")
-        title = input("Title:\n")
+        title = input("Title:\n").strip()
 
         # Check if the title already exists in the spreadsheet
         existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
@@ -123,15 +123,15 @@ def add_new_piece():
 
         print("\nPlease enter the composer of the piece. (Optional)")
         print("Press 'Enter' to confirm.")
-        composer = input("Composer:\n")
+        composer = input("Composer:\n").strip()
 
         print("\nPlease enter the arranger of the piece. (Optional)")
         print("Press 'Enter' to confirm.")
-        arranger = input("Arranger:\n")
+        arranger = input("Arranger:\n").strip()
 
         print("\nPlease enter additional information. (Optional)")
         print("Press 'Enter' to confirm.")
-        additional_info = input("Additional information:\n")
+        additional_info = input("Additional information:\n").strip()
 
         print("\nPlease confirm the following details are correct:\n")
         print(f"Title: {title}")
@@ -339,7 +339,7 @@ def well_okay_bad_validation():
     print("Type 'o' and press 'Enter' if it went okay. (Not at tempo or only a few errors)")
     print("Type 'b' and press 'Enter' if it went bad. (Not at tempo and some errors)")
     while True:
-        user_input = input("\n")
+        user_input = input("\n").strip()
         print("---------------------------")
         if user_input.lower() == "w":
             return 2
@@ -438,7 +438,7 @@ def yes_no_validation():
     while True:
         print("Type 'y' for yes and press 'Enter'.")
         print("Otherwise type 'n' for no and press 'Enter':")
-        confirmation = input("\n")
+        confirmation = input("\n").strip()
         print("---------------------------")
         if confirmation.lower() == "y":
             return True
