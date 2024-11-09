@@ -133,38 +133,52 @@ def add_new_piece():
         print("Press 'Enter' to confirm.")
         additional_info = input("Additional information:\n").strip()
 
-        print("\nPlease confirm the following details are correct:\n")
+        # print("\nPlease confirm the following details are correct:\n")
+        print("\nPlease check if the following data is correct:\n")
         print(f"Title: {title}")
         print(f"Composer: {composer}")
         print(f"Arranger: {arranger}")
         print(f"Additional information: {additional_info}\n")
-
+        """
         answer = yes_no_validation()
         print(answer)
         if answer is True:
             break
         else:
             print("\nPlease re-enter the details.\n")
+        """
+        user_decision = [
+            ("a", "Type 'a' and press 'Enter' if you want to add the piece."),
+            ("r", "Type 'r' and press 'Enter' if you want to re-enter the piece."),
+            ("x", "Type 'x' and press 'Enter' to get back to the main menu.")
+        ]
+        answer = three_options_validation(user_decision)
+        if answer == 2:
+            new_piece = []
+            index_number = get_index_number() + 1
+            created_date = datetime.datetime.now().date()
+            count = 1
 
-    new_piece = []
-    index_number = get_index_number() + 1
-    created_date = datetime.datetime.now().date()
-    count = 1
+            new_piece.append(index_number)
+            new_piece.append(title)
+            new_piece.append(composer)
+            new_piece.append(arranger)
+            new_piece.append(additional_info)
+            new_piece.append(convert_date_to_string(created_date))
+            new_piece.append(count)
 
-    new_piece.append(index_number)
-    new_piece.append(title)
-    new_piece.append(composer)
-    new_piece.append(arranger)
-    new_piece.append(additional_info)
-    new_piece.append(convert_date_to_string(created_date))
-    new_piece.append(count)
+            add_piece_to_index(new_piece)
+            add_new_worksheet(new_piece)
 
-    add_piece_to_index(new_piece)
-    add_new_worksheet(new_piece)
-
-    print("\nNew piece has been added to your repertoire\n")
+            print("\nNew piece has been added to your repertoire\n")
+            break
+        elif answer == 1:
+            continue
+        else:
+            break
 
     main_menu()
+    
 
 
 def get_index_number():
