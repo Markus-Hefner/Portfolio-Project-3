@@ -107,7 +107,7 @@ def add_new_piece():
 
         # Check if the title already exists in the spreadsheet
         existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
-        print(f'Here are all existing titles: {existing_titles}')  # check
+        # print(f'Here are all existing titles: {existing_titles}')  # check
 
         if title.lower() in existing_titles:
             print("\nThis piece already exists in your repertoire.")
@@ -171,9 +171,9 @@ def get_index_number():
     """
     Gets the index number of the last piece in the index
     """
-    print(get_index().col_values(1))
+    # print(get_index().col_values(1))   # check
     index_number = get_index().col_values(1)
-    print(index_number)
+    # print(index_number)  # check
     if len(index_number) == 1:
         return 0
     else:
@@ -208,20 +208,20 @@ def pick_a_piece():
     Picks a piece from the index
     """
     due_pieces = create_due_list(get_all_index_data())
-    print(due_pieces)  # check
+    # print(due_pieces)  # check
     sorted_due_pieces = sort_by_timestamp(due_pieces)
-    print(sorted_due_pieces)  # check
+    # print(sorted_due_pieces)  # check
     # Here should be the question if the user wants to proceed
     # or go back to the main menu.
     sorted_due_pieces_len = len(sorted_due_pieces)
-    print(sorted_due_pieces_len)  # check
+    # print(sorted_due_pieces_len)  # check
     iterables_list = create_iterables_list(sorted_due_pieces_len)
 
     for i in iterables_list:
         a, b, c, d, e, f, g = sorted_due_pieces[i]
         i += 1
         current_piece = PracticePiece(a, b, c, d, e, f, g)
-        print(current_piece.due_date)  # check
+        # print(current_piece.due_date)  # check
 
         print(f'The next piece to practice is {current_piece.title}.')
         print('Would like to practice that now?')
@@ -243,7 +243,7 @@ def create_due_list(all_index_data):
     Removes the list item with the headings in it (which is also a list).
     Removes list items of which the timestamp is > today.
     """
-    print(f'here is all index data: {all_index_data}')  # check
+    # print(f'here is all index data: {all_index_data}')  # check
     all_index_data.pop(0)
     due_list = [col for col in all_index_data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
     # Alternative version:
@@ -251,7 +251,8 @@ def create_due_list(all_index_data):
     # for col in all_index_data:
     #     if convert_string_to_date(col[5]) <= datetime.datetime.now().date():
     #         due_list.append(col)
-    print(f'here is the due_list: {due_list}')  # check
+
+    # print(f'here is the due_list: {due_list}')  # check
     return due_list
 
 
@@ -273,7 +274,7 @@ def create_iterables_list(sorted_due_pieces_len):
     while item < sorted_due_pieces_len:
         iterables_list.append(item)
         item += 1
-    print(iterables_list)
+    # print(iterables_list)  # check
     return iterables_list
 
 
@@ -292,16 +293,16 @@ def practice_piece(current_piece):
         answer = well_okay_bad_validation()
 
         new_due_date = update_due_date_and_count(current_piece, answer)[0]
-        print(f'The new due date is {new_due_date}')  # check
+        # print(f'The new due date is {new_due_date}')  # check
 
         new_count = update_due_date_and_count(current_piece, answer)[1]
-        print(f'The new count is {new_count}')  # check
+        # print(f'The new count is {new_count}')  # check
 
         current_piece.due_date = new_due_date
         current_piece.count = new_count
 
         days_diff = check_due_date(new_due_date)
-        print(days_diff)  # check
+        # print(days_diff)  # check
 
         if days_diff <= 0:
             print('Due date updated. Would you like to go again?')
@@ -314,7 +315,7 @@ def practice_piece(current_piece):
                 break
                 # from here it goes back to the loop in pick_a_piece
         if days_diff == 1:
-            print(f'The next due date for the piece would be {new_due_date}.')
+            print(f'The next due date for the piece would be tomorrow.')
             print('Would you like to practice it again anyway?')
             answer_3 = yes_no_validation()
             if answer_3 is True:
@@ -366,15 +367,15 @@ def update_due_date_and_count(current_piece, answer):
     else:
         factor = 0.5
     new_count = math.ceil(int(current_piece.count) * factor)
-    print(new_count)  # check
+    # print(new_count)  # check
     due_date = current_piece.due_date
-    print(due_date)  # check
+    # print(due_date)  # check
     if answer == 2:
         new_due_date = datetime.datetime.now().date() + datetime.timedelta(days=new_count)
-        print(new_due_date)  # check
+        # print(new_due_date)  # check
     else:
         new_due_date = convert_string_to_date(due_date) + datetime.timedelta(days=new_count)
-        print(new_due_date)  # check
+        # print(new_due_date)  # check
     # Update count on spreadsheet!!! -> Is done in practice_piece function
     return (convert_date_to_string(new_due_date), new_count)
 
