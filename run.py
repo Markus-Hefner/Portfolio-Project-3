@@ -290,7 +290,12 @@ def practice_piece(current_piece):
         print('\nGreat let\'s go!')
         print(f'Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
-        answer = well_okay_bad_validation()
+        assessment_options = [
+            ("w", "Type 'w' and press 'Enter' if it went well. (At tempo, no errors)"),
+            ("o", "Type 'o' and press 'Enter' if it went okay. (Not at tempo or only a few errors)"),
+            ("b", "Type 'b' and press 'Enter' if it went bad. (Not at tempo and some errors)")
+        ]
+        answer = three_options_validation(assessment_options)
 
         new_due_date = update_due_date_and_count(current_piece, answer)[0]
         # print(f'The new due date is {new_due_date}')  # check
@@ -346,6 +351,28 @@ def well_okay_bad_validation():
         elif user_input.lower() == "o":
             return 1
         elif user_input.lower() == "b":
+            return 0
+        else:
+            print("\nInvalid input.\n")
+
+
+def three_options_validation(options):
+    """
+    Validates the user input for three options
+    """
+    a, b, c = options
+
+    while True:
+        print(a[1])
+        print(b[1])
+        print(c[1])
+        user_input = input("\n").strip()
+        print("---------------------------")
+        if user_input.lower() == a[0]:
+            return 2
+        elif user_input.lower() == b[0]:
+            return 1
+        elif user_input.lower() == c[0]:
             return 0
         else:
             print("\nInvalid input.\n")
