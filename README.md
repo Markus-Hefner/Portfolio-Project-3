@@ -176,6 +176,14 @@ IMAGE
 ### Bugs
 
 #### Solved Bugs
+- I could not figure out how to sort a list of list by an item in the sublists other than the first one.
+    - After many trys and a lot of research for solutions I eventually found the expression 'key = lambda' which worked.
+
+- When adjusting the code to pass the PEP8 Python Validator the value for the new_due_date variable in the update_due_date_and_count() function I was unable to split the expression (an addition) over two lines with using a backshlash.
+    - I solved this by utilising an extra variable with a short name, assigning it the value of one of the terms and then using that variable in the addition.
+
+- To pass the PEP8 Python Validator I had to shorten some of the print statement or stretch them over several lines. I thought that since the statement is between brackets I could split the state into another. However, that didn't work: It was still displayed in one line with the now added space from the identation of the second line.
+    - I solved this by putting quotation marks at the end of the first and the beginning of the second line and also adding a \n at the end of the first line thus effectively splitting the statement into to several statements. I also could have simply printed a new statement but since it was one sentence I wanted to keep it in one statement.
 
 
 #### Unsolved Bugs
