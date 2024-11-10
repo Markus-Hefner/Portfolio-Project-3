@@ -185,19 +185,60 @@ IMAGE
 - To pass the PEP8 Python Validator I had to shorten some of the print statement or stretch them over several lines. I thought that since the statement is between brackets I could split the state into another. However, that didn't work: It was still displayed in one line with the now added space from the identation of the second line.
     - I solved this by putting quotation marks at the end of the first and the beginning of the second line and also adding a \n at the end of the first line thus effectively splitting the statement into to several statements. I also could have simply printed a new statement but since it was one sentence I wanted to keep it in one statement.
 
-
 #### Unsolved Bugs
 - Currently there are no know unsolved bugs.
 
-
-
 ## Deployment
 
-### Heroku
+### GitHub, Google Sheets and Heroku
+- Create GitHub account. (If this is already done you can skip this step.)
+- Create Google account. (If this is already done you can skip this step.)
 - Create Heroku account. (If this is already done you can skip this step.)
-- Log into your IDE.
+- Log into your GitHub account.
+- Fork or clone this repository.
+- Log into your Google account and create a new spreadsheet
+- Rename the first worksheet to 'Index' (without the quotation marks). Pay attention that it is spelled correctly!
+- In the **first row** add the following (without the quotation marks and pay attention that it is spelled correctly! Otherwise the app won't work correctly):
+    - Column A: 'Index numnber'
+    - Column B: 'Title'
+    - Column C: 'Composer'
+    - Column D: 'Arranger'
+    - Column E: 'Additional Information'
+    - Column F: 'Timestamp'
+    - Column G: 'Count'
+- Go to https://console.cloud.google.com/welcome/new?pli=1
+- Make sure you are logged in with a personal account.
+- Click on the 'Select a project'-button.
+- Click on the 'New Project'-button.
+- Give the project a name.
+- Click on the 'Create'-button.
+- Click on the 'Select a project'-button again and select the project.
+- Open the side menu by clicking on the burger icon on left upper side.
+- Click on 'APIs and services' and then select 'Library'.
+- In the searchbar search for 'google drive'.
+- Click on the Google Drive API that appears in the search results (probably the first result).
+- On the next page click on 'Enable'.
+- On the next page Click on the 'Create Credentials'-button on the right side.
+- In the dropdown menu under 'Which API are you using?' select 'Google Drive API'.
+- Under 'What data will you be accessing?' select 'Application Data'.
+- Under 'Are you planning to use this API with Compute Engine, Kubernetes Engine, App Engine, or Cloud Functions?' select 'No, I'm not using them'
+- Click on 'Next'.
+- Enter a service account name in the designated input field.
+- Click on 'Create'.
+- In the 'Role'-dropdown menu choose 'Basic' and then 'Editor'.
+- Click on 'Continue'.
+- The next options can be left blank. Click on 'Done'.
+- On the next page scroll to 'Service Account' and click on the one that you just created.
+- Click on the 'Keys'-tab.
+- Click on the 'Add Key'-dropdown menu and select 'Create New Key'
+- Select 'JSON' and click on 'Create'. The json file with your API credentials will be downloaded into the designated folder on your computer (usually the 'Downloads'-folder).
+- Go back to the library again (see above) and search for 'googe sheets'.
+- Click on the Google Sheets API.
+- Click on 'Enable'.
+
+
 - Log into Heroku account.
-- Click on the 'Create new app'-button on the dashboard. Alternatively click on the 'New'-button in the upper right corner of the dashboard and select 'Create new app' from the drop-down menu.
+- Click on the 'Create new app'-button on the dashboard. Alternatively click on the 'New'-button in the upper right corner of the dashboard and select 'Create new app' from the dropdown menu.
 - Give you app a valid name in the designated input field.
 - Select your region.
 - Click on the 'Create app'-button.
@@ -211,7 +252,7 @@ IMAGE
 ## Credits
 
 - Code Institute's mock terminal was used to deploy the app.
-- I used the if __name__ == '__main__': expression 
+- My mentor Rohit Sharma from Code Institute suggested to use the if __name__ == '__main__': expression to start the app which I did.
 
 
 
