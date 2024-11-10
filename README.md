@@ -109,6 +109,14 @@ IMAGE
 - GitHub was used to store the code.
 - Heroku was used to deploy the code in Code Institute's mock terminal.
 
+## Testing
+
+### Code Validation
+
+- The PEP8 Python Validator was used to check the code. No error were found.
+
+IMAGE
+
 
 
 
