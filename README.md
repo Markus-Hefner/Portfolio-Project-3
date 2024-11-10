@@ -114,6 +114,7 @@ IMAGE
 
 - Codeanywhere was used to write and edit the code.
 - GitHub was used to store the code.
+- Google sheets was used to create the spreadsheet.
 - Heroku was used to deploy the code in Code Institute's mock terminal.
 
 ## Testing
