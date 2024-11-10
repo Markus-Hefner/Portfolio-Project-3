@@ -340,28 +340,6 @@ def practice_piece(current_piece):
             break
 
 
-def well_okay_bad_validation():
-    """
-    Validates the user input for three options (well, okay, bad)
-    """
-    print("Type 'w' and press 'Enter' if it went well. (At tempo, no errors)")
-    print("Type 'o' and press 'Enter' if it went okay. (Not at tempo or only "
-          "a few errors)")
-    print("Type 'b' and press 'Enter' if it went bad. (Not at tempo and some "
-          "errors)")
-    while True:
-        user_input = input("\n").strip()
-        print("---------------------------")
-        if user_input.lower() == "w":
-            return 2
-        elif user_input.lower() == "o":
-            return 1
-        elif user_input.lower() == "b":
-            return 0
-        else:
-            print("\nInvalid input.\n")
-
-
 def three_options_validation(options):
     """
     Validates the user input for three options
