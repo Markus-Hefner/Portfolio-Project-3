@@ -25,13 +25,13 @@ This code would go in the run.py file
 
 def welcome():
     print("==================================================================")
-    print("Welcome to It Is Practice Time!")
-    print("It Is Practice Time is an app for musicians assisting in learning "
-          "new pieces, building a repertoire and maintaining your capability "
-          "of play those pieces.")
-    print("In order to do that it automatically keeps track of your progress "
-          "on a certain piece and suggests what to practice next utilising "
-          "spaced repetition.\n")
+    print("\n           Welcome to It Is Practice Time!")
+    print("It Is Practice Time is an app for musicians assisting in\n"
+          "learning new pieces, building a repertoire and\n"
+          "maintaining your capability to play those pieces.")
+    print("In order to do that it automatically keeps track of your progress\n"
+          "on a certain piece and suggests what to practice next\n"
+          "utilising spaced repetition.\n")
 
     main_menu()
 
