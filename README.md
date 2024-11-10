@@ -197,16 +197,9 @@ IMAGE
 - Create Heroku account. (If this is already done you can skip this step.)
 - Log into your GitHub account.
 - Fork or clone this repository.
-- Log into your Google account and create a new spreadsheet
-- Rename the first worksheet to 'Index' (without the quotation marks). Pay attention that it is spelled correctly!
-- In the **first row** add the following (without the quotation marks and pay attention that it is spelled correctly! Otherwise the app won't work correctly):
-    - Column A: 'Index numnber'
-    - Column B: 'Title'
-    - Column C: 'Composer'
-    - Column D: 'Arranger'
-    - Column E: 'Additional Information'
-    - Column F: 'Timestamp'
-    - Column G: 'Count'
+- Log into your Google account.
+- Use the following link https://docs.google.com/spreadsheets/d/1ewUcy7MnR0jFcMQZrFwKQAzN-sXDypiLj5r_iFbshtY/template/preview to create a google sheet (click on the link and then on 'Use template' in the upper right corner).
+- Here you'll find some mock pieces to experiment with the app. But you can simply select everything except the first row (!!!) and delete it.
 - Go to https://console.cloud.google.com/welcome/new?pli=1
 - Make sure you are logged in with a personal account.
 - Click on the 'Select a project'-button.
