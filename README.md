@@ -55,6 +55,13 @@ IMAGE
 - Deployment
 - Credits
 
+## User Stories
+
+### First Time User Goals
+- I want to know what the app is about in order to decide whether or not it is of any use for me.
+
+### Returning and Frequent User Goals
+- I want to get to action as fast as possible whether this is viewing the repertoire, adding new pieces or practicing.
 
 ## Features
 
@@ -118,6 +125,14 @@ IMAGE
 IMAGE
 
 ### User Stories
+
+#### First Time User Goals
+- I want to know what the app is about in order to decide whether or not it is of any use for me.
+    - Since a short and concise explanation of the app is delivered right at the beginning I get the information I need to decide.
+
+#### Returning and Frequent User Goals
+- I want to get to action as fast as possible whether this is viewing the repertoire, adding new pieces or practicing.
+    - Since there is no complex menu to navigate but all the functions can be accessed in thge main menu I can immediately start with whatever it is that I want to do. Furthermore the app takes me by the hand tells me what I can and cannot do and gives me constant feedback.
 
 ### Manual Testing
 
