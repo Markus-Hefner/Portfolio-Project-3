@@ -23,13 +23,24 @@ SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 This code would go in the run.py file
 """
 
+def welcome():
+    print("==================================================================")
+    print("Welcome to It Is Practice Time!")
+    print("It Is Practice Time is an app for musicians assisting in learning "
+          "new pieces, building a repertoire and maintaining your capability "
+          "of play those pieces.")
+    print("In order to do that it automatically keeps track of your progress "
+          "on a certain piece and suggests what to practice next utilising "
+          "spaced repetition.\n")
+
+    main_menu()
 
 def main_menu():
     """
     The user decides whether to practice, add a new piece or show repertoire
     """
-    print("===========================")
-    print("Welcome to the main menu!")
+    print("============================")
+    print("Your are now inth Main Menu!")
     print("What would you like to do?\n")
     print("Type 'r' and press 'Enter' if you want to see your repertoire.")
     print("Type 'a' and press 'Enter' if you want to add a new piece.")
@@ -37,7 +48,7 @@ def main_menu():
     print("Type 'x' and press 'Enter' if you want to exit the programme.\n")
 
     user_decision = input("\n").strip()
-    print("---------------------------")
+    print("----------------------------")
 
     if user_decision.lower() == "r":
         print('\nLet\'s check out your repertoire\n')
@@ -110,14 +121,14 @@ def add_new_piece():
                            if col[1].lower() != "title"]
 
         if title.lower() in existing_titles:
-            print("\n---------------------------")
+            print("\n----------------------------")
             print("This piece already exists in your repertoire.")
             print("Please choose another title or add additional information.")
             print(f'(E.g.: "{title} (other Version)")\n')
             continue
         # Check if the title is empty
         elif title == "":
-            print("\n---------------------------")
+            print("\n----------------------------")
             print("Title cannot be empty.\n")
             continue
         else:
@@ -244,8 +255,8 @@ def pick_a_piece():
         else:
             break
 
-    print('Congratulations, you got through all the material today')
-    print('Hope to see you tomorrow again :-)')
+    print('Congratulations, you got through all the material')
+    print('Hope to see you again tomorrow :-)')
 
     main_menu()
 
@@ -351,7 +362,7 @@ def three_options_validation(options):
         print(b[1])
         print(c[1])
         user_input = input("\n").strip()
-        print("---------------------------")
+        print("----------------------------")
         if user_input.lower() == a[0]:
             return 2
         elif user_input.lower() == b[0]:
@@ -457,7 +468,7 @@ def yes_no_validation():
         print("Type 'y' for yes and press 'Enter'.")
         print("Otherwise type 'n' for no and press 'Enter':")
         confirmation = input("\n").strip()
-        print("---------------------------")
+        print("----------------------------")
         if confirmation.lower() == "y":
             return True
         elif confirmation.lower() == "n":
@@ -481,4 +492,4 @@ def convert_string_to_date(str_date):
 
 
 if __name__ == '__main__':
-    main_menu()
+    welcome()
