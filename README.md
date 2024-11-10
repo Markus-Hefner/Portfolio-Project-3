@@ -45,5 +45,54 @@ All this leads to a more enjoyable practice experience since it streamlines the 
 
 IMAGE
 
+## Table of Contents
+
+- User Stories
+- Features
+- Future Features
+- Technology
+- Testing
+- Deployment
+- Credits
+
+
+## Features
+
+Main Menu
+
+IMAGE
+
+- In the main menu the user can select between four options:
+    - Showing the already existing repertoire
+    - Adding a new piece
+    - Practicing
+    - Exiting the app
+
+Repertoire
+
+IMAGE
+
+- List of the the pieces in the repertoire with the index of the piece and the information the user added. With the mouse can scroll through the repertoire.
+
+Adding a New Piece
+
+IMAGE
+
+- The user adds the title of the piece, the composer (optional), the arranger (optional) and any additional information (optional)
+- As for the title the app checks whether or not the piece already exists or if the user put no title or just spaces which are all invalid inputs. This will also be reflected to the user.
+
+Practicing
+
+IMAGE
+
+- A piece is suggested to the user to practice. The user can then decide if she/he wants to practice that piece, move on to the next one or go back to the main menu.
+- If the user has practiced a piece and assessed how it went, she/he is then asked if she/he wants to practice it again or not or, in the case that the piece's next due date is more than two days in the future, the user is suggested the next piece.
+- This process continues until the new due dates of the pieces are at least two days in the future or the user decides to end the practice session by returning to the main menu.
+
+Exiting
+
+IMAGE
+
+- Exits the app.
 
 
