@@ -297,11 +297,11 @@ def practice_piece(current_piece):
         print(f'---> Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
         assessment_options = [
-            ("w", "Type 'w' and press 'Enter' if it went well.\n"
+            ("w", "Type 'w' and press 'Enter' if it went well. "
                 "(At tempo, no errors)"),
-            ("o", "Type 'o' and press 'Enter' if it went okay.\n"
+            ("o", "Type 'o' and press 'Enter' if it went okay. "
                 "Not at tempo or only a few errors)"),
-            ("b", "Type 'b' and press 'Enter' if it went bad.\n"
+            ("b", "Type 'b' and press 'Enter' if it went bad. "
                 "(Not at tempo and some errors)")
         ]
         answer = three_options_validation(assessment_options)
