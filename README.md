@@ -123,7 +123,7 @@ Exiting
 
 - The PEP8 Python Validator was used to check the code. No error were found.
 
-IMAGE
+![PEP8 Python Validator Result](readmedocs/PEP8-Python-Validator.png "PEP8 Python Validator Result")
 
 ### User Stories
 
