@@ -103,6 +103,12 @@ IMAGE
 - Removing piece from the list that the user no longer wants to practice at all.
 - Editing pieces after they have been added.
 
+## Technology
+
+- Codeanywhere was used to write and edit the code.
+- GitHub was used to store the code.
+- Heroku was used to deploy the code in Code Institute's mock terminal.
+
 
 
 
