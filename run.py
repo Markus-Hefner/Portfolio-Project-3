@@ -391,7 +391,6 @@ def update_due_date_and_count(current_piece, answer):
         due_date_as_date = convert_string_to_date(due_date)
         new_due_date = due_date_as_date + datetime.timedelta(days=new_count)
 
-    print(f'this is the new due date after calculation {new_due_date}')
     return (convert_date_to_string(new_due_date), new_count)
 
 
