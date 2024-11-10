@@ -95,4 +95,13 @@ IMAGE
 
 - Exits the app.
 
+## Future Features
+
+- The user would be able to break up pieces themselves into several parts which have there own due dates. Only after all the due parts are practiced enough so that they are not due anymore the due date of the piece itself gets updated. If the user skips a part that would be due the due date of the piece would not be updated but for the current practice session she/he would still move on to the next piece.
+- Adding tracking at which tempo the user is able to play a certain piece or part of it measured in beats per minute. Before updating the due date the tempo would be updated until the user is at a previously defined tempo goal. In contrast to updating the due date here negative values are also possible since if a piece/part doesn't work the user should first practice it slower.
+- Removing piece from the list that the user no longer wants to practice at all.
+- Editing pieces after they have been added.
+
+
+
 
