@@ -25,7 +25,7 @@ This code would go in the run.py file
 
 def welcome():
     print("==================================================================")
-    print("\n           Welcome to It Is Practice Time!")
+    print("\n***** Welcome to It Is Practice Time! *****\n")
     print("It Is Practice Time is an app for musicians assisting in\n"
           "learning new pieces, building a repertoire and\n"
           "maintaining your capability to play those pieces.")
