@@ -40,7 +40,7 @@ def main_menu():
     The user decides whether to practice, add a new piece or show repertoire
     """
     print("============================")
-    print("Your are now inth Main Menu!")
+    print("Your are now in the Main Menu!")
     print("What would you like to do?\n")
     print("Type 'r' and press 'Enter' if you want to see your repertoire.")
     print("Type 'a' and press 'Enter' if you want to add a new piece.")
