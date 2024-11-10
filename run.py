@@ -300,7 +300,7 @@ def practice_piece(current_piece):
             ("w", "Type 'w' and press 'Enter' if it went well. "
                 "(At tempo, no errors)"),
             ("o", "Type 'o' and press 'Enter' if it went okay. "
-                "Not at tempo or only a few errors)"),
+                "(Not at tempo or only a few errors)"),
             ("b", "Type 'b' and press 'Enter' if it went bad. "
                 "(Not at tempo and some errors)")
         ]
