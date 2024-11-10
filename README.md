@@ -43,7 +43,7 @@ Thereby it not only relieves the musician from figuring out what to practice nex
 
 All this leads to a more enjoyable practice experience since it streamlines the process by taking care of some of the "book keeping" and decision making and thus helps the musician to focus on the most important part of a practice session: to play music.
 
-IMAGE
+![Website on different screen sizes](readmedocs/ItIsPracticeTime-Mockup-screenshot.png "Mockup screenshot")
 
 ## Table of Contents
 
@@ -67,7 +67,7 @@ IMAGE
 
 Main Menu
 
-IMAGE
+![Main Menu](readmedocs/Main-Menu.png "Main Menu")
 
 - In the main menu the user can select between four options:
     - Showing the already existing repertoire
@@ -77,20 +77,20 @@ IMAGE
 
 Repertoire
 
-IMAGE
+![Repertoire](readmedocs/Repertoire.png "Repertoire")
 
 - List of the the pieces in the repertoire with the index of the piece and the information the user added. With the mouse can scroll through the repertoire.
 
 Adding a New Piece
 
-IMAGE
+![Adding a New Piece](readmedocs/Adding-a-New-Piece.png "Adding a New Piece")
 
 - The user adds the title of the piece, the composer (optional), the arranger (optional) and any additional information (optional)
 - As for the title the app checks whether or not the piece already exists or if the user put no title or just spaces which are all invalid inputs. This will also be reflected to the user.
 
 Practicing
 
-IMAGE
+![Practicing](readmedocs/Practicing.png "Practicing")
 
 - A piece is suggested to the user to practice. The user can then decide if she/he wants to practice that piece, move on to the next one or go back to the main menu.
 - If the user has practiced a piece and assessed how it went, she/he is then asked if she/he wants to practice it again or not or, in the case that the piece's next due date is more than two days in the future, the user is suggested the next piece.
@@ -98,7 +98,7 @@ IMAGE
 
 Exiting
 
-IMAGE
+![Exiting](readmedocs/Exiting.png "Exiting")
 
 - Exits the app.
 
@@ -250,6 +250,8 @@ IMAGE
 - Go to your open creds.json file in your IDE.
 - Copy the whole file content.
 - Go back to Heroku and paste it into the value field.
+- Delete the creds.json file in your IDE.
+- Return to Heroku.
 - In the 'Key'-field type 'PORT' (all uppercase, no quotation marks).
 - In the 'Value'-field type '8000'.
 - Scroll down and click on 'Add buildpacks'.
