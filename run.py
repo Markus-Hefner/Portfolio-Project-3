@@ -79,7 +79,9 @@ def show_repertoire():
     Shows repetoire of pieces
     """
     print("Your repetoire:\n")
-    for i in get_all_index_data():
+    all_index_data = get_all_index_data()
+    all_index_data.pop(0)
+    for i in all_index_data:
         print(f'Index: {i[0]}')
         print(f'Title: {i[1]}')
         print(f'Composer: {i[2]}')
