@@ -239,7 +239,9 @@ Exiting
 - Untick notify people.
 - Click on 'Share'.
 - Open the terminal in Gitpod.
-- Type 'python3 run.py' (no quotation marks) and press 'Enter'
+- Type 'pip3 install gspread google-auth' (without quotation marks) and press 'Enter'.
+- Wait until everything is installed.
+- Type 'python3 run.py' (without quotation marks) and press 'Enter'.
 
 ### Deployment using GitHub, Google Sheets and Gitpod and Heroku
 - Make sure you completed all the steps from the 'Deployment using GitHub, Google Sheets and Gitpod'-section above.
