@@ -15,24 +15,26 @@ All this leads to a more enjoyable practice experience since it streamlines the 
 - User Stories
 - Features
 - Future Features
+- Flow Chart
 - Technology
 - Testing
 - Deployment
+- Links
 - Credits
 
 ## User Stories
 
-### First Time User Goals
-- I want to know what the app is about in order to decide whether or not it is of any use for me.
+- I want to see what and how many pieces are in my repertoire.
 
-### Returning and Frequent User Goals
-- I want to get to action as fast as possible whether this is viewing the repertoire, adding new pieces or practicing.
+- I want to add new pieces to my repertoire.
+
+- I want to practice my pieces without having to ponder what to play next.
+
+- If I am done I want to exit the app.
 
 ## Features
 
 Main Menu
-
-![Main Menu](readmedocs/Main-Menu.png "Main Menu")
 
 - In the main menu the user can select between four options:
     - Showing the already existing repertoire
@@ -42,28 +44,20 @@ Main Menu
 
 Repertoire
 
-![Repertoire](readmedocs/Repertoire.png "Repertoire")
-
 - List of the the pieces in the repertoire with the index of the piece and the information the user added. With the mouse can scroll through the repertoire.
 
 Adding a New Piece
-
-![Adding a New Piece](readmedocs/Adding-a-New-Piece.png "Adding a New Piece")
 
 - The user adds the title of the piece, the composer (optional), the arranger (optional) and any additional information (optional)
 - As for the title the app checks whether or not the piece already exists or if the user put no title or just spaces which are all invalid inputs. This will also be reflected to the user.
 
 Practicing
 
-![Practicing](readmedocs/Practicing.png "Practicing")
-
 - A piece is suggested to the user to practice. The user can then decide if she/he wants to practice that piece, move on to the next one or go back to the main menu.
 - If the user has practiced a piece and assessed how it went, she/he is then asked if she/he wants to practice it again or not or, in the case that the piece's next due date is more than two days in the future, the user is suggested the next piece.
 - This process continues until the new due dates of the pieces are at least two days in the future or the user decides to end the practice session by returning to the main menu.
 
 Exiting
-
-![Exiting](readmedocs/Exiting.png "Exiting")
 
 - Exits the app.
 
@@ -75,11 +69,15 @@ Exiting
 - Removing piece from the list that the user no longer wants to practice at all.
 - Editing pieces after they have been added.
 
+## Flow Chart
+
+![Flow Chart](readmedocs/Flow-Chart.png "Flow Chart")
+
 ## Technology
 
 - Codeanywhere was used to write and edit the code.
 - GitHub was used to store the code.
-- Google sheets was used to create the spreadsheet.
+- Google sheets was used to create the spreadsheet. (Here is the link to the spreadsheet with some test pieces: https://docs.google.com/spreadsheets/d/1ewUcy7MnR0jFcMQZrFwKQAzN-sXDypiLj5r_iFbshtY/edit?usp=sharing)
 - Heroku was used to deploy the code in Code Institute's mock terminal.
 
 ## Testing
@@ -92,13 +90,39 @@ Exiting
 
 ### User Stories
 
-#### First Time User Goals
-- I want to know what the app is about in order to decide whether or not it is of any use for me.
-    - Since a short and concise explanation of the app is delivered right at the beginning I get the information I need to decide.
+- I want to see what and how many pieces are in my repertoire.
+    - In the main menu I simply have to type 'r' and press 'Enter' and I am able to scroll my repertoire.
 
-#### Returning and Frequent User Goals
-- I want to get to action as fast as possible whether this is viewing the repertoire, adding new pieces or practicing.
-    - Since there is no complex menu to navigate but all the functions can be accessed in thge main menu I can immediately start with whatever it is that I want to do. Furthermore the app takes me by the hand tells me what I can and cannot do and gives me constant feedback.
+- I want to add new pieces to my repertoire.
+    - In the main menu I simply have to type 'a' and press 'Enter' upon which I will be asked to enter all the details of piece.
+
+- I want to practice my pieces without having to ponder what to play next.
+    - In the main menu I simply have to type 'p' and press 'Enter'. A piece is suggested to me and I can start practicing or move on to the next piece.
+
+- If I am done I want to exit the app.
+    - In the main menu I simply have to type 'x' and press 'Enter' to exit the app.
+
+### Sample images for Situations (see also table below)
+
+- Main Menu
+
+![Main Menu](readmedocs/Main-Menu.png "Main Menu")
+
+- Repertoire (scrolled up to the beginning)
+
+![Repertoire](readmedocs/Repertoire.png "Repertoire")
+
+- Adding a New Piece - User is prompted to enter and confirm a title
+
+![Adding a New Piece](readmedocs/Adding-a-New-Piece.png "Adding a New Piece")
+
+- Practicing - User is suggested the next piece to practice
+
+![Practicing](readmedocs/Practicing.png "Practicing")
+
+- Exiting (after typeing 'x' and pressing 'Enter')
+
+![Exiting](readmedocs/Exiting.png "Exiting")
 
 ### Manual Testing
 
@@ -156,28 +180,36 @@ Exiting
 
 ## Deployment
 
-### GitHub, Google Sheets and Heroku
+### Deployment using GitHub, Google Sheets and Gitpod
 - Create GitHub account. (If this is already done you can skip this step.)
 - Create Google account. (If this is already done you can skip this step.)
-- Create Heroku account. (If this is already done you can skip this step.)
-- Log into your GitHub account.
+- Create Gitpod account. (If this is already done you can skip this step.)
+- Add Gitpod extension to your Browser. (Google Chrome is recommended.)
+- Log into GitHub account.
 - Fork or clone this repository.
-- Log into your Google account.
-- Use the following link https://docs.google.com/spreadsheets/d/1ewUcy7MnR0jFcMQZrFwKQAzN-sXDypiLj5r_iFbshtY/template/preview to create a google sheet (click on the link and then on 'Use template' in the upper right corner).
-- Here you'll find some mock pieces to experiment with the app. But you can simply select everything except the first row (!!!) and delete it.
+- Log into Google account.
+- Rename the first worksheet to 'Index' (without the quotation marks). Pay attention that it is spelled correctly!
+- In the **first row** add the following (without the quotation marks and pay attention that it is spelled correctly! Otherwise the app won't work correctly):
+    - Column A: 'Index numnber'
+    - Column B: 'Title'
+    - Column C: 'Composer'
+    - Column D: 'Arranger'
+    - Column E: 'Additional Information'
+    - Column F: 'Timestamp'
+    - Column G: 'Count'
 - Go to https://console.cloud.google.com/welcome/new?pli=1
 - Make sure you are logged in with a personal account.
-- Click on the 'Select a project'-button.
-- Click on the 'New Project'-button.
+- Click on 'Select a project'.
+- Click on 'New Project'.
 - Give the project a name.
-- Click on the 'Create'-button.
-- Click on the 'Select a project'-button again and select the project.
+- Click on 'Create'.
+- Click on 'Select a project' again and select the project.
 - Open the side menu by clicking on the burger icon on left upper side.
 - Click on 'APIs and services' and then select 'Library'.
 - In the searchbar search for 'google drive'.
 - Click on the Google Drive API that appears in the search results (probably the first result).
 - On the next page click on 'Enable'.
-- On the next page Click on the 'Create Credentials'-button on the right side.
+- On the next page Click on 'Create Credentials' on the right side.
 - In the dropdown menu under 'Which API are you using?' select 'Google Drive API'.
 - Under 'What data will you be accessing?' select 'Application Data'.
 - Under 'Are you planning to use this API with Compute Engine, Kubernetes Engine, App Engine, or Cloud Functions?' select 'No, I'm not using them'
@@ -194,31 +226,37 @@ Exiting
 - Go back to the library again (see above) and search for 'googe sheets'.
 - Click on the Google Sheets API.
 - Click on 'Enable'.
-- Go to the cloned or forked version of this repository in your own GitHub account and open it with your IDE.
-- Drag and drop the JSON file from the folder on your machine to your workspace in your IDE.
+- Go to the cloned or forked version of this repository in your own GitHub account and open it with your Gitpod.
+- Drag and drop the JSON file from the folder on your machine to your Gitpod workspace.
 - Rename it to creds.json.
+- Open the .gitignore file.
+- Add 'creds.json' (without quotation marks) to the list.
 - Open the creds.json file.
-- Under 'client_email' you find an email adress. Copy it without the quotation marks.
+- Under 'client_email' you find an email address. Copy it without the quotation marks.
 - Go back to your Google spreadsheet and click on 'Share' near the top right corner.
-- Paste in the email adress.
+- Paste in the email address.
 - Select 'Editor' if that is not already done.
 - Untick notify people.
 - Click on 'Share'.
+- Open the terminal in Gitpod.
+- Type 'python3 run.py' (no quotation marks) and press 'Enter'
+
+### Deployment using GitHub, Google Sheets and Gitpod and Heroku
+- Make sure you completed all the steps from the 'Deployment using GitHub, Google Sheets and Gitpod'-section above.
+- Create Heroku account. (If this is already done you can skip this step.)
 - Log into Heroku account.
-- Click on the 'Create new app'-button on the dashboard. Alternatively click on the 'New'-button in the upper right corner of the dashboard and select 'Create new app' from the dropdown menu.
-- Give you app a valid name in the designated input field.
+- Click on 'Create new app' on the dashboard. Alternatively click on the 'New'-button in the upper right corner of the dashboard and select 'Create new app' from the dropdown menu.
+- Give your app a valid name in the designated input field.
 - Select your region.
-- Click on the 'Create app'-button.
+- Click on 'Create app'.
 - On the next screen select the 'Settings'-tab.
-- Scroll down an click on the 'Reveal Config Vars'-button.
-- Enter 'CREDS' in the field for key.
-- Go to your open creds.json file in your IDE.
-- Copy the whole file content.
-- Go back to Heroku and paste it into the value field.
-- Delete the creds.json file in your IDE.
-- Return to Heroku.
-- In the 'Key'-field type 'PORT' (all uppercase, no quotation marks).
-- In the 'Value'-field type '8000'.
+- Scroll down and click on the 'Reveal Config Vars'-button.
+- Enter 'CREDS' into the 'Key'-field.
+- For the 'Value'-field go back to Gitpod and open the creds.json file.
+- Copy the whole content of the file.
+- Go back to Heroku and paste it into the 'Value'-field.
+- In the next 'Key'-field type 'PORT' (all uppercase, no quotation marks).
+- In the 'Value'-field type '8000' (no quotation marks).
 - Scroll down and click on 'Add buildpacks'.
 - Click on 'Python'.
 - Click on 'Save changes'.
@@ -234,6 +272,10 @@ Exiting
 - Scroll down and click on 'Deploy Branch'.
 - Wait until the app is built.
 - Finally, click on 'View'.
+
+## Links
+
+- Here is the link to the spreadsheet with some test pieces: https://docs.google.com/spreadsheets/d/1ewUcy7MnR0jFcMQZrFwKQAzN-sXDypiLj5r_iFbshtY/edit?usp=sharing
 
 ## Credits
 
