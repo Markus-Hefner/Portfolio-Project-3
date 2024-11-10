@@ -23,6 +23,7 @@ SHEET = GSPREAD_CLIENT.open('it_is_practice_time')
 This code would go in the run.py file
 """
 
+
 def welcome():
     print("==================================================================")
     print("\n***** Welcome to It Is Practice Time! *****\n")
@@ -34,6 +35,7 @@ def welcome():
           "utilising spaced repetition.\n")
 
     main_menu()
+
 
 def main_menu():
     """
