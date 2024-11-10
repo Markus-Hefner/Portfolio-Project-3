@@ -106,16 +106,18 @@ def add_new_piece():
         title = input("Title:\n").strip()
 
         # Check if the title already exists in the spreadsheet
-        existing_titles = [col[1].lower() for col in get_all_index_data() if col[1].lower() != "title"]
-        # print(f'Here are all existing titles: {existing_titles}')  # check
+        existing_titles = [col[1].lower() for col in get_all_index_data()
+                           if col[1].lower() != "title"]
 
         if title.lower() in existing_titles:
-            print("\nThis piece already exists in your repertoire.")
+            print("\n---------------------------")
+            print("This piece already exists in your repertoire.")
             print("Please choose another title or add additional information.")
             print(f'(E.g.: "{title} (other Version)")\n')
             continue
         # Check if the title is empty
         elif title == "":
+            print("\n---------------------------")
             print("Title cannot be empty.\n")
             continue
         else:
@@ -133,24 +135,18 @@ def add_new_piece():
         print("Press 'Enter' to confirm.")
         additional_info = input("Additional information:\n").strip()
 
-        # print("\nPlease confirm the following details are correct:\n")
         print("\nPlease check if the following data is correct:\n")
         print(f"Title: {title}")
         print(f"Composer: {composer}")
         print(f"Arranger: {arranger}")
         print(f"Additional information: {additional_info}\n")
-        """
-        answer = yes_no_validation()
-        print(answer)
-        if answer is True:
-            break
-        else:
-            print("\nPlease re-enter the details.\n")
-        """
+
         user_decision = [
             ("a", "Type 'a' and press 'Enter' if you want to add the piece."),
-            ("r", "Type 'r' and press 'Enter' if you want to re-enter the piece."),
-            ("x", "Type 'x' and press 'Enter' to get back to the main menu.")
+            ("r", "Type 'r' and press 'Enter' if you want to re-enter the "
+                "piece."),
+            ("x", "Type 'x' and press 'Enter' if you want to discard the "
+                "entry and get back to the main menu.")
         ]
         answer = three_options_validation(user_decision)
         if answer == 2:
@@ -178,16 +174,13 @@ def add_new_piece():
             break
 
     main_menu()
-    
 
 
 def get_index_number():
     """
     Gets the index number of the last piece in the index
     """
-    # print(get_index().col_values(1))   # check
     index_number = get_index().col_values(1)
-    # print(index_number)  # check
     if len(index_number) == 1:
         return 0
     else:
@@ -206,7 +199,8 @@ def add_new_worksheet(new_piece):
     Adds a new worksheet with the name of the piece
     to the spreadsheet for later use
     """
-    new_worksheet = SHEET.add_worksheet(title=new_piece[1], rows="1", cols="10")
+    new_worksheet = SHEET.add_worksheet(title=new_piece[1],
+                                        rows="1", cols="10")
     new_worksheet.append_row(new_piece)
 
 
@@ -222,28 +216,24 @@ def pick_a_piece():
     Picks a piece from the index
     """
     due_pieces = create_due_list(get_all_index_data())
-    # print(due_pieces)  # check
     sorted_due_pieces = sort_by_timestamp(due_pieces)
-    # print(sorted_due_pieces)  # check
-    # Here should be the question if the user wants to proceed
-    # or go back to the main menu.
     sorted_due_pieces_len = len(sorted_due_pieces)
-    # print(sorted_due_pieces_len)  # check
     iterables_list = create_iterables_list(sorted_due_pieces_len)
 
     for i in iterables_list:
         a, b, c, d, e, f, g = sorted_due_pieces[i]
         i += 1
         current_piece = PracticePiece(a, b, c, d, e, f, g)
-        # print(current_piece.due_date)  # check
 
         print(f'The next piece to practice is {current_piece.title}.\n')
-        # print('Would you like to practice that now?')
-        # print('If not, we will move on to the next piece.')
+
         user_decision = [
-            ("p", "Type 'p' and press 'Enter' if you want to practice the piece now."),
-            ("n", "Type 'n' and press 'Enter' if you want to move on to the next piece."),
-            ("x", "Type 'x' and press 'Enter' if you want get back to the main menu.")
+            ("p", "Type 'p' and press 'Enter' if you want to practice the "
+                "piece now."),
+            ("n", "Type 'n' and press 'Enter' if you want to move on to the "
+                "next piece."),
+            ("x", "Type 'x' and press 'Enter' if you want get back to the "
+                "main menu.")
         ]
         answer = three_options_validation(user_decision)
         if answer == 2:
@@ -253,13 +243,6 @@ def pick_a_piece():
             continue
         else:
             break
-        """
-        answer = yes_no_validation()
-        if answer is True:
-            practice_piece(current_piece)
-        else:
-            print('Alright, let\'s move on to the next piece.\n')
-        """
 
     print('Congratulations, you got through all the material today')
     print('Hope to see you tomorrow again :-)')
@@ -272,16 +255,10 @@ def create_due_list(all_index_data):
     Removes the list item with the headings in it (which is also a list).
     Removes list items of which the timestamp is > today.
     """
-    # print(f'here is all index data: {all_index_data}')  # check
     all_index_data.pop(0)
-    due_list = [col for col in all_index_data if convert_string_to_date(col[5]) <= datetime.datetime.now().date()]
-    # Alternative version:
-    # due_list = []
-    # for col in all_index_data:
-    #     if convert_string_to_date(col[5]) <= datetime.datetime.now().date():
-    #         due_list.append(col)
+    due_list = [col for col in all_index_data if convert_string_to_date(col[5])
+                <= datetime.datetime.now().date()]
 
-    # print(f'here is the due_list: {due_list}')  # check
     return due_list
 
 
@@ -303,7 +280,7 @@ def create_iterables_list(sorted_due_pieces_len):
     while item < sorted_due_pieces_len:
         iterables_list.append(item)
         item += 1
-    # print(iterables_list)  # check
+
     return iterables_list
 
 
@@ -317,26 +294,25 @@ def practice_piece(current_piece):
     """
     while True:
         print('\nGreat let\'s go!')
-        print(f'Play {current_piece.title} and let us now how it went.\n')
+        print(f'\n---> Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
         assessment_options = [
-            ("w", "Type 'w' and press 'Enter' if it went well. (At tempo, no errors)"),
-            ("o", "Type 'o' and press 'Enter' if it went okay. (Not at tempo or only a few errors)"),
-            ("b", "Type 'b' and press 'Enter' if it went bad. (Not at tempo and some errors)")
+            ("w", "Type 'w' and press 'Enter' if it went well."
+                "(At tempo, no errors)"),
+            ("o", "Type 'o' and press 'Enter' if it went okay. "
+                "Not at tempo or only a few errors)"),
+            ("b", "Type 'b' and press 'Enter' if it went bad. "
+                "(Not at tempo and some errors)")
         ]
         answer = three_options_validation(assessment_options)
 
         new_due_date = update_due_date_and_count(current_piece, answer)[0]
-        # print(f'The new due date is {new_due_date}')  # check
-
         new_count = update_due_date_and_count(current_piece, answer)[1]
-        # print(f'The new count is {new_count}')  # check
 
         current_piece.due_date = new_due_date
         current_piece.count = new_count
 
         days_diff = check_due_date(new_due_date)
-        # print(days_diff)  # check
 
         if days_diff <= 0:
             print('Due date updated. Would you like to go again?')
@@ -347,7 +323,6 @@ def practice_piece(current_piece):
                 update_index(current_piece)
                 print('Alright, let\'s move on to the next piece.\n')
                 break
-                # from here it goes back to the loop in pick_a_piece
         if days_diff == 1:
             print(f'The next due date for the piece would be tomorrow.')
             print('Would you like to practice it again anyway?')
@@ -370,8 +345,10 @@ def well_okay_bad_validation():
     Validates the user input for three options (well, okay, bad)
     """
     print("Type 'w' and press 'Enter' if it went well. (At tempo, no errors)")
-    print("Type 'o' and press 'Enter' if it went okay. (Not at tempo or only a few errors)")
-    print("Type 'b' and press 'Enter' if it went bad. (Not at tempo and some errors)")
+    print("Type 'o' and press 'Enter' if it went okay. (Not at tempo or only "
+        "a few errors)")
+    print("Type 'b' and press 'Enter' if it went bad. (Not at tempo and some "
+        "errors)")
     while True:
         user_input = input("\n").strip()
         print("---------------------------")
@@ -423,16 +400,14 @@ def update_due_date_and_count(current_piece, answer):
     else:
         factor = 0.5
     new_count = math.ceil(int(current_piece.count) * factor)
-    # print(new_count)  # check
     due_date = current_piece.due_date
-    # print(due_date)  # check
     if answer == 2:
-        new_due_date = datetime.datetime.now().date() + datetime.timedelta(days=new_count)
-        # print(new_due_date)  # check
+        new_due_date = datetime.datetime.now().date()
+        + datetime.timedelta(days=new_count)
     else:
-        new_due_date = convert_string_to_date(due_date) + datetime.timedelta(days=new_count)
-        # print(new_due_date)  # check
-    # Update count on spreadsheet!!! -> Is done in practice_piece function
+        new_due_date = convert_string_to_date(due_date)
+        + datetime.timedelta(days=new_count)
+
     return (convert_date_to_string(new_due_date), new_count)
 
 
@@ -440,22 +415,26 @@ def check_due_date(new_due_date):
     """
     Checks if the new due date is in the future
     """
-    return (convert_string_to_date(new_due_date) - datetime.datetime.now().date()).days
+    return (convert_string_to_date(new_due_date)
+            - datetime.datetime.now().date()).days
 
 
 def update_index(current_piece):
     """
     Updates the due date and the count of the current piece
     """
-    get_index().update_cell(int(current_piece.index) + 1, 6, current_piece.due_date)
-    get_index().update_cell(int(current_piece.index) + 1, 7, current_piece.count)
+    get_index().update_cell(int(current_piece.index)
+                            + 1, 6, current_piece.due_date)
+    get_index().update_cell(int(current_piece.index)
+                            + 1, 7, current_piece.count)
 
 
 class PracticePiece:
     """
     Class of the pieces to be practiced
     """
-    def __init__(self, index, title, composer, arranger, additional_info, due_date, count):
+    def __init__(self, index, title, composer, arranger, additional_info,
+                 due_date, count):
         self.index = index
         self.title = title
         self.composer = composer
@@ -477,6 +456,7 @@ def get_all_index_data():
     Gets all data in the index worksheet
     """
     index = get_index()
+
     return index.get_all_values()
 
 
