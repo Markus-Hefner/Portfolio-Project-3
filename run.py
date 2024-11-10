@@ -395,11 +395,10 @@ def update_due_date_and_count(current_piece, answer):
         factor = 1
     else:
         factor = 0.5
-    print(f'this is the count before calculation {current_piece.count}')
+
     new_count = math.ceil(int(current_piece.count) * factor)
-    print(f'this is the count after calculation {new_count}')
-    print(f'this is the due date before calculation {current_piece.due_date}')
     due_date = current_piece.due_date
+
     if answer == 2:
         now = datetime.datetime.now().date()
         new_due_date = now + datetime.timedelta(days=new_count)
