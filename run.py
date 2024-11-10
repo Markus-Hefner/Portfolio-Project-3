@@ -498,4 +498,5 @@ def convert_string_to_date(str_date):
     return datetime.datetime.strptime(str_date, '%Y-%m-%d').date()
 
 
-main_menu()
+if __name__ == '__main__':
+   main_menu()
