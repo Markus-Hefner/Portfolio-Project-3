@@ -330,7 +330,8 @@ def practice_piece(current_piece):
         days_diff = check_due_date(current_piece.due_date)
 
         if days_diff <= 0:
-            print('Due date updated. Would you like to go again?')
+            print('Due date updated.')
+            print('Would you like to go again?')
             answer_2 = yes_no_validation()
             if answer_2 is True:
                 continue
@@ -339,7 +340,8 @@ def practice_piece(current_piece):
                 print('Alright, let\'s move on to the next piece.\n')
                 break
         if days_diff == 1:
-            print(f'The next due date for the piece would be tomorrow.')
+            print('Due date updated.')
+            print('The next due date for the piece would be tomorrow.')
             print('Would you like to practice it again anyway?')
             answer_3 = yes_no_validation()
             if answer_3 is True:
@@ -348,6 +350,7 @@ def practice_piece(current_piece):
                 update_index(current_piece)
                 break
         else:
+            print("Due date updated.")
             print("Great!")
             print(f'The piece won\'t be due for another {days_diff} days.')
             update_index(current_piece)
