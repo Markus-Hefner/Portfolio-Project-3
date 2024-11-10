@@ -235,8 +235,16 @@ IMAGE
 - Go back to the library again (see above) and search for 'googe sheets'.
 - Click on the Google Sheets API.
 - Click on 'Enable'.
-
-
+- Go to the cloned or forked version of this repository in your own GitHub account and open it with your IDE.
+- Drag and drop the JSON file from the folder on your machine to your workspace in your IDE.
+- Rename it to creds.json.
+- Open the creds.json file.
+- Under 'client_email' you find an email adress. Copy it without the quotation marks.
+- Go back to your Google spreadsheet and click on 'Share' near the top right corner.
+- Paste in the email adress.
+- Select 'Editor' if that is not already done.
+- Untick notify people.
+- Click on 'Share'.
 - Log into Heroku account.
 - Click on the 'Create new app'-button on the dashboard. Alternatively click on the 'New'-button in the upper right corner of the dashboard and select 'Create new app' from the dropdown menu.
 - Give you app a valid name in the designated input field.
@@ -245,12 +253,30 @@ IMAGE
 - On the next screen select the 'Settings'-tab.
 - Scroll down an click on the 'Reveal Config Vars'-button.
 - Enter 'CREDS' in the field for key.
-- Copy the content from your workspace
-
-
+- Go to your open creds.json file in your IDE.
+- Copy the whole file content.
+- Go back to Heroku and paste it into the value field.
+- In the 'Key'-field type 'PORT' (all uppercase, no quotation marks).
+- In the 'Value'-field type '8000'.
+- Scroll down and click on 'Add buildpacks'.
+- Click on 'Python'.
+- Click on 'Save changes'.
+- Click on 'Add buildpacks' again.
+- Click on 'nodejs'.
+- Click on 'Save changes'.
+- Make sure the buildpacks appear in that order ('Python' on top, 'nodejs' underneath). If not, click and drag them in that order.
+- Scroll up and click on the 'Deploy'-tab.
+- For 'Deployment method' choose 'GitHub'.
+- Click on 'Connect to GitHub'.
+- Search for the repository name (don't forget to click on 'Search').
+- Click on 'Connect' next to the correct repository.
+- Scroll down and click on 'Deploy Branch'.
+- Wait until the app is built.
+- Finally, click on 'View'.
 
 ## Credits
 
+- To connect API with Python part of the code from Code Institute's 'Love Sandwiches Walkthrough Project > Getting Set Up > Connecting to our API with Python' fourth video (1:32 to 4:28) was copied and pasted in.
 - Code Institute's mock terminal was used to deploy the app.
 - My mentor Rohit Sharma from Code Institute suggested to use the if __name__ == '__main__': expression to start the app which I did.
 
