@@ -293,8 +293,8 @@ def practice_piece(current_piece):
     if the user wants to practice again.
     """
     while True:
-        print('\nGreat let\'s go!')
-        print(f'\n---> Play {current_piece.title} and let us now how it went.\n')
+        print('\nGreat let\'s go!\n')
+        print(f'---> Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
         assessment_options = [
             ("w", "Type 'w' and press 'Enter' if it went well."
@@ -312,7 +312,7 @@ def practice_piece(current_piece):
         current_piece.due_date = new_due_date
         current_piece.count = new_count
 
-        days_diff = check_due_date(new_due_date)
+        days_diff = check_due_date(current_piece.due_date)
 
         if days_diff <= 0:
             print('Due date updated. Would you like to go again?')
@@ -346,9 +346,9 @@ def well_okay_bad_validation():
     """
     print("Type 'w' and press 'Enter' if it went well. (At tempo, no errors)")
     print("Type 'o' and press 'Enter' if it went okay. (Not at tempo or only "
-        "a few errors)")
+          "a few errors)")
     print("Type 'b' and press 'Enter' if it went bad. (Not at tempo and some "
-        "errors)")
+          "errors)")
     while True:
         user_input = input("\n").strip()
         print("---------------------------")
@@ -399,15 +399,19 @@ def update_due_date_and_count(current_piece, answer):
         factor = 1
     else:
         factor = 0.5
+    print(f'this is the count before calculation {current_piece.count}')
     new_count = math.ceil(int(current_piece.count) * factor)
+    print(f'this is the count after calculation {new_count}')
+    print(f'this is the due date before calculation {current_piece.due_date}')
     due_date = current_piece.due_date
     if answer == 2:
-        new_due_date = datetime.datetime.now().date()
-        + datetime.timedelta(days=new_count)
+        now = datetime.datetime.now().date()
+        new_due_date = now + datetime.timedelta(days=new_count)
     else:
-        new_due_date = convert_string_to_date(due_date)
-        + datetime.timedelta(days=new_count)
+        due_date_as_date = convert_string_to_date(due_date)
+        new_due_date = due_date_as_date + datetime.timedelta(days=new_count)
 
+    print(f'this is the new due date after calculation {new_due_date}')
     return (convert_date_to_string(new_due_date), new_count)
 
 
@@ -499,4 +503,4 @@ def convert_string_to_date(str_date):
 
 
 if __name__ == '__main__':
-   main_menu()
+    main_menu()
