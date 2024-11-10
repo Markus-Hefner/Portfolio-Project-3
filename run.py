@@ -179,7 +179,6 @@ def add_new_piece():
             new_piece.append(count)
 
             add_piece_to_index(new_piece)
-            add_new_worksheet(new_piece)
 
             print("\nNew piece has been added to your repertoire\n")
             break
@@ -207,16 +206,6 @@ def add_piece_to_index(new_piece):
     Adds a new piece to the index
     """
     get_index().append_row(new_piece)
-
-
-def add_new_worksheet(new_piece):
-    """
-    Adds a new worksheet with the name of the piece
-    to the spreadsheet for later use
-    """
-    new_worksheet = SHEET.add_worksheet(title=new_piece[1],
-                                        rows="1", cols="10")
-    new_worksheet.append_row(new_piece)
 
 
 """
@@ -312,11 +301,11 @@ def practice_piece(current_piece):
         print(f'---> Play {current_piece.title} and let us now how it went.\n')
         print('How did it go?')
         assessment_options = [
-            ("w", "Type 'w' and press 'Enter' if it went well."
+            ("w", "Type 'w' and press 'Enter' if it went well.\n"
                 "(At tempo, no errors)"),
-            ("o", "Type 'o' and press 'Enter' if it went okay. "
+            ("o", "Type 'o' and press 'Enter' if it went okay.\n"
                 "Not at tempo or only a few errors)"),
-            ("b", "Type 'b' and press 'Enter' if it went bad. "
+            ("b", "Type 'b' and press 'Enter' if it went bad.\n"
                 "(Not at tempo and some errors)")
         ]
         answer = three_options_validation(assessment_options)
